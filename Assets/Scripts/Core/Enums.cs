@@ -39,8 +39,8 @@ public enum ChampionJob
     Transmogrifier // 형상변환자
 }
 
-// 챔피언 코스트
 
+// 챔피언 코스트
 public enum ChampionCost
 {
     None = 0,
@@ -49,4 +49,40 @@ public enum ChampionCost
     ThreeCost,
     FourCost,
     FiveCost
+}
+
+
+// 아이템 타입
+
+public enum ItemType
+{
+    None = 0,
+    Normal,
+    Using, // 소모 아이템 (니코, 자제기, 재조합)
+    Symbol, // 특성 아이템
+    Relics, // 유물
+    Special, // 찬템
+    Support // 지원
+}
+
+public enum ItemAttributeType
+{
+    None = 0,
+    AD_Damage,
+    AD_Speed,
+    AD_Defense,
+    AP_Damage,
+    AP_Defense,
+    Mana,
+    HP,
+    CriticalPercent,
+    Special
+}
+
+// 스킬 타입
+public enum SkillType
+{
+    None = 0,
+    Active,
+    Passive
 }

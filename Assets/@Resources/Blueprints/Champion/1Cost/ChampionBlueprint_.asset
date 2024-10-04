@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6e2b35faa36754aa8fd56768b9ac5d, type: 3}
+  m_Name: ChampionBlueprint_
+  m_EditorClassIdentifier: 
+  championName: 
+  championObj: {fileID: 0}
+  championLine_First: 0
+  championLine_Second: 0
+  championJob: 0
+  championCost: 0
+  damage: 0
+  level: 0
+  count: 0
+  range: 0
+  attackSpeed: 0
+  moveSpeed: 0

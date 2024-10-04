@@ -32,9 +32,16 @@ public class Manager : MonoBehaviour
     #region Manager
 
     private readonly GameManager game = new();
-
+    private readonly ItemManager item = new();
+    private readonly ChampionManager champion = new();
+    private readonly SkillManager skill = new();
 
     public static GameManager Game => Instance != null ? Instance.game : null;
 
+    public static ItemManager Item => Instance != null ? Instance.item : null;
+
+    public static ChampionManager Champion => Instance != null ? Instance.champion : null;
+
+    public static SkillManager Skill => Instance != null ? Instance.skill : null;
     #endregion
 }
