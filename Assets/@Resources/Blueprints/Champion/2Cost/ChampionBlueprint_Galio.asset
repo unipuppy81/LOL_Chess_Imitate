@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChampionBlueprint_Galio
   m_EditorClassIdentifier: 
   championName: "\uAC08\uB9AC\uC624"
-  championObj: {fileID: 0}
+  championObj: {fileID: 7600294620243936368, guid: ff6ffd6b58bbe414a984aa38eb853481, type: 3}
   championLine_First: 11
   championLine_Second: 0
   championJob_First: 6
@@ -30,8 +30,8 @@ MonoBehaviour:
     Hp: 2430
     Power: 124
   attack_Speed: 0.65
-  ad_Defense: 45
-  ap_Defense: 45
+  ad_Defense: 0
+  ap_Defense: 0
   speed: 1
   mana_Total: 90
   mana_Cur: 30

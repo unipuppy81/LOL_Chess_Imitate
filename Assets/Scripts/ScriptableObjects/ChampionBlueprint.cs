@@ -18,18 +18,15 @@ public class ChampionBlueprint : ScriptableObject
     [Header("Enemy Stats")]
     [SerializeField] private List<ChampionLevelData> championLevelData;
     [SerializeField] private float attack_Speed;
-    [SerializeField] private long ad_Defense;
-    [SerializeField] private long ap_Defense;
+    [SerializeField] private int ad_Defense;
+    [SerializeField] private int ap_Defense;
     [SerializeField] private float speed;
     [SerializeField] private float mana_Total;
     [SerializeField] private float mana_Cur;
     [SerializeField] private int attack_Range;
     [SerializeField] private SkillBlueprint skillBlueprint;
 
-    private float hp_Total;
-    private float hp_Cur;
-    private int purchase_Cost;
-    private int sell_Cost;
+
 
 
 
@@ -46,5 +43,21 @@ public class ChampionBlueprint : ScriptableObject
     public ChampionJob ChampionJob_Second => championJob_Second;
 
     public ChampionCost ChampionCost => championCost;
+
+    public List<ChampionLevelData> ChampionLevelData => championLevelData;
+
+    public float AttackSpeed => attack_Speed;
+
+    public int AD_Defense => ad_Defense;
+
+    public int AP_Defense => ap_Defense;
+
+    public float Speed => speed;
+    public float Mana_Total => mana_Total;
+    public float Mana_Cur => mana_Cur;
+    public int Attack_Range => attack_Range;
+
+    public SkillBlueprint SkillBlueprint => skillBlueprint;
+
 }
 
