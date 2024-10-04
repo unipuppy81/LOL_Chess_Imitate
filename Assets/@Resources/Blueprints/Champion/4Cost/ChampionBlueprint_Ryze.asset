@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c6e2b35faa36754aa8fd56768b9ac5d, type: 3}
-  m_Name: ChampionBlueprint_Galio
+  m_Name: ChampionBlueprint_Ryze
   m_EditorClassIdentifier: 
-  championName: "\uAC08\uB9AC\uC624"
+  championName: "\uB77C\uC774\uC988"
   championObj: {fileID: 0}
   championLine_First: 11
   championLine_Second: 0
-  championJob_First: 6
-  championJob_Second: 9
-  championCost: 2
+  championJob_First: 13
+  championJob_Second: 0
+  championCost: 4
   championLevelData:
   - Level: 1
-    Hp: 750
-    Power: 55
+    Hp: 850
+    Power: 45
   - Level: 2
-    Hp: 1350
-    Power: 83
+    Hp: 1530
+    Power: 68
   - Level: 3
-    Hp: 2430
-    Power: 124
-  attack_Speed: 0.65
-  ad_Defense: 45
-  ap_Defense: 45
+    Hp: 2754
+    Power: 101
+  attack_Speed: 0.8
+  ad_Defense: 30
+  ap_Defense: 30
   speed: 1
   mana_Total: 90
-  mana_Cur: 30
-  attack_Range: 1
-  skillBlueprint: {fileID: 11400000, guid: 3da85e667dee3e541875d6119ca96313, type: 2}
+  mana_Cur: 15
+  attack_Range: 4
+  skillBlueprint: {fileID: 11400000, guid: e9789057201d61445a2b05c112bf5694, type: 2}

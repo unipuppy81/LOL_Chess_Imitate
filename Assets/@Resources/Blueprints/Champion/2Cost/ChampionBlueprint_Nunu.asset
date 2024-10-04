@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c6e2b35faa36754aa8fd56768b9ac5d, type: 3}
-  m_Name: ChampionBlueprint_Galio
+  m_Name: ChampionBlueprint_Nunu
   m_EditorClassIdentifier: 
-  championName: "\uAC08\uB9AC\uC624"
+  championName: "\uB204\uB204"
   championObj: {fileID: 0}
-  championLine_First: 11
+  championLine_First: 4
   championLine_Second: 0
-  championJob_First: 6
-  championJob_Second: 9
+  championJob_First: 8
+  championJob_Second: 0
   championCost: 2
   championLevelData:
   - Level: 1
-    Hp: 750
-    Power: 55
+    Hp: 800
+    Power: 50
   - Level: 2
-    Hp: 1350
-    Power: 83
+    Hp: 1440
+    Power: 75
   - Level: 3
-    Hp: 2430
-    Power: 124
-  attack_Speed: 0.65
+    Hp: 2592
+    Power: 113
+  attack_Speed: 0.6
   ad_Defense: 45
   ap_Defense: 45
   speed: 1
-  mana_Total: 90
-  mana_Cur: 30
+  mana_Total: 75
+  mana_Cur: 25
   attack_Range: 1
-  skillBlueprint: {fileID: 11400000, guid: 3da85e667dee3e541875d6119ca96313, type: 2}
+  skillBlueprint: {fileID: 11400000, guid: c437c995af0f2e547b16c48f41b84e82, type: 2}
