@@ -6,8 +6,9 @@ public class MapGenerator : MonoBehaviour
 {
     public int width = 7;
     public int height = 8;
-    public int rectWidth = 9; // 직사각형 타일의 개수를 9로 설정
-    public float tileSize = 1f;
+    public int rectWidth = 9; // 직사각형 타일의 개수
+    public float desiredMapWidth = 20f; // 원하는 맵의 가로 크기 (단위: 유니티 월드 좌표)
+    public float tileSize; // 타일의 크기 (자동 계산될 예정)
     public Material hexMaterial;
     public Material rectMaterial;
 
@@ -18,10 +19,19 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
+        CalculateTileSize();
         GenerateMeshes();
         GenerateMap();
         AdjustCamera();
         CreatePlayerUnits();
+    }
+
+    void CalculateTileSize()
+    {
+        float hexWidth = Mathf.Sqrt(3); // 타일 크기가 1일 때의 헥사곤 타일 폭
+        float totalHexWidth = hexWidth * width + hexWidth / 2f; // 타일 크기가 1일 때의 전체 맵 가로 크기
+
+        tileSize = desiredMapWidth / totalHexWidth; // 원하는 맵 가로 크기에 맞게 tileSize 계산
     }
 
     void GenerateMeshes()
@@ -73,22 +83,21 @@ public class MapGenerator : MonoBehaviour
         float hexHeight = tileSize * 2f; // 헥사곤의 높이
 
         // 맵의 전체 크기 계산
-        float mapWidthSize = hexWidth * (width + 0.5f);
-        float mapHeightSize = hexHeight * (height * 0.75f + 0.25f);
+        float mapWidthSize = hexWidth * width + hexWidth / 2f;
+        float mapHeightSize = hexHeight * (height - 1) * 0.75f;
 
         // 그리드의 중앙을 기준으로 오프셋 계산
         float xOffset = mapWidthSize / 2f - hexWidth / 2f;
-        float zOffset = mapHeightSize / 2f - hexHeight / 2f;
+        float zOffset = mapHeightSize / 2f;
 
         // 헥사곤 타일 생성
         for (int r = 0; r < height; r++)
         {
-            bool isOffsetRow = r % 2 == 1; // 홀수 행 여부
-            int numCols = width;
+            int numCols = width; // 모든 행에서 타일 개수를 동일하게 설정
 
             for (int q = 0; q < numCols; q++)
             {
-                float xPos = q * hexWidth + (isOffsetRow ? hexWidth / 2f : 0) - xOffset;
+                float xPos = q * hexWidth + (r % 2) * (hexWidth / 2f) - xOffset;
                 float zPos = r * (hexHeight * 0.75f) - zOffset;
 
                 Vector3 position = new Vector3(xPos, 0, zPos);
@@ -98,8 +107,8 @@ public class MapGenerator : MonoBehaviour
         }
 
         // 맨 위와 맨 아래에 직사각형 타일 생성
-        CreateRectangularRow(-1, -zOffset - (hexHeight * 0.75f));
-        CreateRectangularRow(height, -zOffset + height * (hexHeight * 0.75f));
+        CreateRectangularRow(-1, -hexHeight * 0.75f - zOffset);
+        CreateRectangularRow(height, hexHeight * 0.75f * (height) - zOffset);
     }
 
     void CreateHexTile(Vector3 position, int q, int r, Mesh mesh, Material material)
@@ -128,13 +137,11 @@ public class MapGenerator : MonoBehaviour
         float hexWidth = Mathf.Sqrt(3) * tileSize;
 
         // 직사각형 타일의 전체 폭 계산
-        float rectRowWidth = rectWidth * hexWidth;
+        float rectRowWidth = hexWidth * rectWidth;
         float xOffset = rectRowWidth / 2f - hexWidth / 2f;
 
-        // Z축 위치 조정 값
-        float zOffset = (tileSize * 2f * 0.2f) / 2f; // 육각형 타일 높이의 절반
+        float zOffset = (tileSize * 2f * 0.75f) / 2f; // 육각형 타일 높이의 절반
 
-        // row 값에 따라 Z축 위치 조정
         if (row == -1)
             zPos -= zOffset + gapBetweenTiles;
         else if (row == height)
@@ -170,20 +177,20 @@ public class MapGenerator : MonoBehaviour
         float hexHeight = tileSize * 2f;
 
         // 맵의 전체 크기 계산
-        float mapWidthSize = Mathf.Max(width * hexWidth + hexWidth / 2f, rectWidth * hexWidth);
-        float mapHeightSize = (height + 2) * hexHeight * 0.75f + gapBetweenTiles * 2f;
+        float mapWidthSize = hexWidth * width + hexWidth / 2f;
+        float mapHeightSize = hexHeight * (height - 1) * 0.75f + hexHeight * 0.75f * 2f;
 
         // 카메라의 중심 위치 계산
         Vector3 centerPosition = new Vector3(0, 0, 0);
 
         // 카메라 위치 설정
-        float cameraHeight = 50f; // 필요에 따라 조정
-        Camera.main.transform.position = centerPosition + new Vector3(0, cameraHeight, 0);
-        Camera.main.transform.rotation = Quaternion.Euler(80f, 0f, 0f);
+        float cameraHeight = Mathf.Max(mapWidthSize, mapHeightSize); // 맵 크기에 따라 카메라 높이 조정
+        Camera.main.transform.position = centerPosition + new Vector3(0, 18f, -21f);
+        Camera.main.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
 
         // 카메라 투영 방식 설정
         Camera.main.orthographic = true;
-        Camera.main.orthographicSize = mapHeightSize / 1.5f;
+        Camera.main.orthographicSize = cameraHeight / 1.8f;
 
         // 카메라 클리핑 플레인 설정
         Camera.main.nearClipPlane = -10f;

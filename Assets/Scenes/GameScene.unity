@@ -342,10 +342,11 @@ MonoBehaviour:
   width: 7
   height: 8
   rectWidth: 9
+  desiredMapWidth: 20
   tileSize: 1
   hexMaterial: {fileID: 2100000, guid: c5e88527f5cb4ea44a10322a7019cd7f, type: 2}
   rectMaterial: {fileID: 2100000, guid: f2e5180c0e7fac848b83b13d5424f444, type: 2}
-  gapBetweenTiles: 0.1
+  gapBetweenTiles: -0.6
 --- !u!4 &1405685930
 Transform:
   m_ObjectHideFlags: 0
