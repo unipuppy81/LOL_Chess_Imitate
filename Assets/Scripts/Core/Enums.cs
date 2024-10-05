@@ -86,3 +86,10 @@ public enum SkillType
     Active,
     Passive
 }
+
+public enum DamageType
+{
+    Normal,
+    Critical,
+    Player
+}

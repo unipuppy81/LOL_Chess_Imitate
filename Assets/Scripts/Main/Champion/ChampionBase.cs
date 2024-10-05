@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ChampionBase : MonoBehaviour
 {
+    [SerializeField] private Canvas UICanvas;
+
+    #region Fields
     private ChampionBlueprint championBlueprint;
     private SkillBlueprint skillBlueprint;
     private GameObject skillObject;
@@ -33,7 +36,22 @@ public class ChampionBase : MonoBehaviour
     private int sell_Cost;
 
 
+    private Rigidbody rigid;
+    private ChampionView championView;
+    
+
+    #endregion
+
     #region Init
+
+    /// <summary>
+    /// blueprint로 UI 생성하고 클릭해서 구매하면 SetChampion 호출
+    /// </summary>
+    /// <param name="blueprint"></param>
+    /// <param name="position"></param>
+    /// <param name="hpWeight"></param>
+    /// <param name="atkWeight"></param>
+    /// <param name="goldWeight"></param>
     public void SetChampion(ChampionBlueprint blueprint, Vector3 position, long hpWeight, long atkWeight, long goldWeight)
     {
         championBlueprint = blueprint;
@@ -64,9 +82,25 @@ public class ChampionBase : MonoBehaviour
         sell_Cost = purchase_Cost * championLevel - 1;
     }
 
+    public void SetHpBar()
+    {
+
+    }
+
+    public void ResetHealth()
+    {
+        curHp = maxHp;
+    }
+
     #endregion
 
     #region Unity Flow
+    private void Awake()
+    {
+        rigid = GetComponent<Rigidbody>();
+        championView = GetComponent<ChampionView>();
+    }
+
     private void Start()
     {
         
@@ -80,11 +114,16 @@ public class ChampionBase : MonoBehaviour
 
     #endregion
 
-    #region Attack 
+    #region Attack Method
 
-    public void NormalAttack()
+    public void CreateNormalAttack()
     {
 
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        yield return null;
     }
 
     public void SkillAttack()
@@ -95,6 +134,24 @@ public class ChampionBase : MonoBehaviour
         baseSkill.Skill();
     }
 
+    public void FloatingDamage(Vector3 position, int damage)
+    {
+
+    }
+
+    #endregion
+
+    #region Health Method
+
+    public void TakeDamage(int damage)
+    {
+
+    }
+
+    private void Die()
+    {
+
+    }
 
     #endregion
 }

@@ -13,4 +13,10 @@ public class ItemBlueprint : ScriptableObject
     [SerializeField] private ItemType itemType;
     [SerializeField] private List<ItemAttribute> itemAttribute;
     
+
+    public Image Icon => icon;
+    public string ItemName => itemName;
+    public string Description => description;
+    public ItemType ItemType => itemType;
+    public List<ItemAttribute> Attribute => itemAttribute;
 }
