@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 1405685929}
   - component: {fileID: 1405685931}
   - component: {fileID: 1405685932}
+  - component: {fileID: 1405685933}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -344,9 +345,13 @@ MonoBehaviour:
   rectWidth: 9
   desiredMapWidth: 20
   tileSize: 1
-  hexMaterial: {fileID: 2100000, guid: c5e88527f5cb4ea44a10322a7019cd7f, type: 2}
-  rectMaterial: {fileID: 2100000, guid: f2e5180c0e7fac848b83b13d5424f444, type: 2}
+  hexTilePrefab: {fileID: 5841901025388831893, guid: f83699365dab22844bf271a8a948646b, type: 3}
+  rectTilePrefab: {fileID: 2737894483133301760, guid: a64cddffea9e14b43b26dd8697aeba2e, type: 3}
+  itemTilePrefab: {fileID: 2737894483133301760, guid: a64cddffea9e14b43b26dd8697aeba2e, type: 3}
   gapBetweenTiles: -0.6
+  maxGoldSlots: 5
+  goldSlotSize: 1
+  goldSlotSpacing: 0.1
 --- !u!4 &1405685930
 Transform:
   m_ObjectHideFlags: 0
@@ -387,6 +392,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec80b6e8ed47f9438eb31fd539aba98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1405685933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405685928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8511578c4954a604ba56b63ad94d057b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGold: 0
+  enemyGold: 0
+  maxGoldSlots: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
