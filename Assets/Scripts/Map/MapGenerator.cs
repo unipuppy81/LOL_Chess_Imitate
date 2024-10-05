@@ -9,19 +9,28 @@ public class MapGenerator : MonoBehaviour
     public int rectWidth = 9; // 직사각형 타일의 개수
     public float desiredMapWidth = 20f; // 원하는 맵의 가로 크기 (단위: 유니티 월드 좌표)
     public float tileSize; // 타일의 크기 (자동 계산될 예정)
-    public Material hexMaterial;
-    public Material rectMaterial;
 
-    private Mesh hexMesh;
-    private Mesh quadMesh;
+    public GameObject hexTilePrefab; // 헥사곤 타일 프리팹
+    public GameObject rectTilePrefab; // 직사각형 타일 프리팹
+    public GameObject itemTilePrefab; // 아이템 타일 프리팹
 
     public float gapBetweenTiles = 0.1f; // 타일 간격 조정용 변수
+
+    private float rectWidthSize; // 사각형 타일 폭
+
+    public int maxGoldSlots = 5; // 최대 골드 표시 칸 수
+    public float goldSlotSize = 1f; // 골드 표시 칸의 크기
+    public float goldSlotSpacing = 0.1f; // 골드 표시 칸 간의 간격
+
+    private float mapWidthSize;
+    private float mapHeightSize;
 
     void Start()
     {
         CalculateTileSize();
-        GenerateMeshes();
+        //GenerateMeshes();
         GenerateMap();
+        CreateCornerTiles();
         AdjustCamera();
         CreatePlayerUnits();
     }
@@ -32,49 +41,9 @@ public class MapGenerator : MonoBehaviour
         float totalHexWidth = hexWidth * width + hexWidth / 2f; // 타일 크기가 1일 때의 전체 맵 가로 크기
 
         tileSize = desiredMapWidth / totalHexWidth; // 원하는 맵 가로 크기에 맞게 tileSize 계산
-    }
 
-    void GenerateMeshes()
-    {
-        // 헥사곤 메쉬 생성
-        hexMesh = HexagonMeshGenerator.GenerateHexagonMesh(tileSize);
-
-        // 직사각형 타일의 폭과 높이를 설정
-        float rectWidthSize = Mathf.Sqrt(3) * tileSize; // 헥사곤 타일의 폭과 동일하게
-        float rectHeightSize = tileSize * 2f * 0.75f; // 헥사곤 타일의 수직 간격과 동일하게
-
-        // 직사각형 메쉬 생성
-        quadMesh = GenerateQuadMesh(rectWidthSize, rectHeightSize);
-    }
-
-    Mesh GenerateQuadMesh(float width, float height)
-    {
-        Mesh mesh = new Mesh();
-
-        Vector3[] vertices = new Vector3[4];
-        int[] triangles = new int[6];
-
-        float halfWidth = width / 2f;
-        float halfHeight = height / 2f;
-
-        vertices[0] = new Vector3(-halfWidth, 0, -halfHeight);
-        vertices[1] = new Vector3(halfWidth, 0, -halfHeight);
-        vertices[2] = new Vector3(-halfWidth, 0, halfHeight);
-        vertices[3] = new Vector3(halfWidth, 0, halfHeight);
-
-        triangles[0] = 0;
-        triangles[1] = 2;
-        triangles[2] = 1;
-
-        triangles[3] = 1;
-        triangles[4] = 2;
-        triangles[5] = 3;
-
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.RecalculateNormals();
-
-        return mesh;
+        float rectWidthRatio = 0.90f; // 직사각형 타일 폭의 비율 (예: 80%)
+        rectWidthSize = (Mathf.Sqrt(3) * tileSize) * rectWidthRatio; // 직사각형 타일의 폭
     }
 
     void GenerateMap()
@@ -83,8 +52,8 @@ public class MapGenerator : MonoBehaviour
         float hexHeight = tileSize * 2f; // 헥사곤의 높이
 
         // 맵의 전체 크기 계산
-        float mapWidthSize = hexWidth * width + hexWidth / 2f;
-        float mapHeightSize = hexHeight * (height - 1) * 0.75f;
+        mapWidthSize = hexWidth * width - hexWidth / 2f;
+        mapHeightSize = hexHeight * (height - 1) * 0.75f;
 
         // 그리드의 중앙을 기준으로 오프셋 계산
         float xOffset = mapWidthSize / 2f - hexWidth / 2f;
@@ -97,12 +66,12 @@ public class MapGenerator : MonoBehaviour
 
             for (int q = 0; q < numCols; q++)
             {
-                float xPos = q * hexWidth + (r % 2) * (hexWidth / 2f) - xOffset;
+                float xPos = q * hexWidth - (r % 2) * (hexWidth / 2f) - xOffset;
                 float zPos = r * (hexHeight * 0.75f) - zOffset;
 
                 Vector3 position = new Vector3(xPos, 0, zPos);
 
-                CreateHexTile(position, q, r, hexMesh, hexMaterial);
+                CreateHexTile(position, q, r);
             }
         }
 
@@ -111,22 +80,12 @@ public class MapGenerator : MonoBehaviour
         CreateRectangularRow(height, hexHeight * 0.75f * (height) - zOffset);
     }
 
-    void CreateHexTile(Vector3 position, int q, int r, Mesh mesh, Material material)
+    void CreateHexTile(Vector3 position, int q, int r)
     {
-        GameObject tile = new GameObject($"Hex_{q}_{r}");
-        tile.transform.position = position;
-        tile.transform.parent = this.transform;
+        GameObject tile = Instantiate(hexTilePrefab, position, Quaternion.identity, this.transform);
+        tile.name = $"Hex_{q}_{r}";
 
-        MeshFilter meshFilter = tile.AddComponent<MeshFilter>();
-        MeshRenderer meshRenderer = tile.AddComponent<MeshRenderer>();
-        meshRenderer.material = material;
-
-        meshFilter.mesh = mesh;
-
-        MeshCollider meshCollider = tile.AddComponent<MeshCollider>();
-        meshCollider.sharedMesh = mesh;
-
-        HexTile hexTile = tile.AddComponent<HexTile>();
+        HexTile hexTile = tile.GetComponent<HexTile>();
         hexTile.q = q;
         hexTile.r = r;
         hexTile.s = -q - r;
@@ -134,11 +93,8 @@ public class MapGenerator : MonoBehaviour
 
     void CreateRectangularRow(int row, float zPos)
     {
-        float hexWidth = Mathf.Sqrt(3) * tileSize;
-
-        // 직사각형 타일의 전체 폭 계산
-        float rectRowWidth = hexWidth * rectWidth;
-        float xOffset = rectRowWidth / 2f - hexWidth / 2f;
+        float rectRowWidth = rectWidthSize * rectWidth;
+        float xOffset = rectRowWidth / 2f - rectWidthSize / 2f;
 
         float zOffset = (tileSize * 2f * 0.75f) / 2f; // 육각형 타일 높이의 절반
 
@@ -149,24 +105,14 @@ public class MapGenerator : MonoBehaviour
 
         for (int x = 0; x < rectWidth; x++)
         {
-            float xPos = x * hexWidth - xOffset;
+            float xPos = x * rectWidthSize - xOffset;
 
             Vector3 position = new Vector3(xPos, 0, zPos);
 
-            GameObject tile = new GameObject($"Rect_{x}_{row}");
-            tile.transform.position = position;
-            tile.transform.parent = this.transform;
+            GameObject tile = Instantiate(rectTilePrefab, position, Quaternion.identity, this.transform);
+            tile.name = $"Rect_{x}_{row}";
 
-            MeshFilter meshFilter = tile.AddComponent<MeshFilter>();
-            MeshRenderer meshRenderer = tile.AddComponent<MeshRenderer>();
-            meshRenderer.material = rectMaterial;
-
-            meshFilter.mesh = quadMesh;
-
-            MeshCollider meshCollider = tile.AddComponent<MeshCollider>();
-            meshCollider.sharedMesh = quadMesh;
-
-            HexTile hexTile = tile.AddComponent<HexTile>();
+            HexTile hexTile = tile.GetComponent<HexTile>();
             hexTile.isRectangularTile = true;
         }
     }
@@ -177,8 +123,8 @@ public class MapGenerator : MonoBehaviour
         float hexHeight = tileSize * 2f;
 
         // 맵의 전체 크기 계산
-        float mapWidthSize = hexWidth * width + hexWidth / 2f;
-        float mapHeightSize = hexHeight * (height - 1) * 0.75f + hexHeight * 0.75f * 2f;
+        mapWidthSize = Mathf.Max(hexWidth * width + hexWidth / 2f, rectWidthSize * rectWidth);
+        mapHeightSize = hexHeight * (height - 1) * 0.75f + hexHeight * 0.75f * 2f;
 
         // 카메라의 중심 위치 계산
         Vector3 centerPosition = new Vector3(0, 0, 0);
@@ -211,6 +157,69 @@ public class MapGenerator : MonoBehaviour
             HexTile tile = GameObject.Find($"Rect_{x}_-1").GetComponent<HexTile>();
 
             unit.PlaceOnTile(tile);
+        }
+    }
+    void CreateCornerTile(Vector3 position, int cornerId)
+    {
+        GameObject tile = Instantiate(rectTilePrefab, position, Quaternion.identity, this.transform);
+        tile.name = $"CornerTile_{cornerId}";
+
+        HexTile hexTile = tile.GetComponent<HexTile>();
+        hexTile.isRectangularTile = true;
+
+        // 아이템을 놓을 수 있는 컴포넌트 추가
+        ItemHolder itemHolder = tile.AddComponent<ItemHolder>();
+        itemHolder.maxItems = 8; // 최대 8개의 아이템을 놓을 수 있도록 설정
+    }
+
+    void CreateCornerTiles()
+    {
+        float cornerTileOffset = rectWidthSize * 0.6f; // 맵 가장자리에서 약간 떨어뜨리기 위한 오프셋
+        float adjustedTileOffset = rectWidthSize; // 간격을 고려한 타일 오프셋
+
+        // ----------------------
+        // 왼쪽 아래 코너
+        // ----------------------
+
+        // 기본 코너 타일
+        Vector3 bottomLeftPos = new Vector3(-mapWidthSize / 2f - cornerTileOffset, 0, -mapHeightSize / 2f - cornerTileOffset + 1f);
+        CreateCornerTile(bottomLeftPos, 0);
+
+        // 왼쪽으로 하나 추가 (왼쪽 아래 코너 기준)
+        Vector3 bottomLeftPosLeft = new Vector3(bottomLeftPos.x - adjustedTileOffset, bottomLeftPos.y, bottomLeftPos.z);
+        CreateCornerTile(bottomLeftPosLeft, 2); // 타일 ID 2
+
+        // 아래로 하나 추가 (추가된 왼쪽 타일 기준)
+        Vector3 bottomLeftPosDown = new Vector3(bottomLeftPosLeft.x, bottomLeftPosLeft.y, bottomLeftPosLeft.z - 2.309f);
+        CreateCornerTile(bottomLeftPosDown, 3); // 타일 ID 3
+
+        // ----------------------
+        // 오른쪽 위 코너
+        // ----------------------
+
+        // 기본 코너 타일
+        Vector3 topRightPos = new Vector3(mapWidthSize / 2f + cornerTileOffset, 0, mapHeightSize / 2f + cornerTileOffset - 1f);
+        CreateCornerTile(topRightPos, 1);
+
+        // 오른쪽으로 하나 추가 (오른쪽 위 코너 기준)
+        Vector3 topRightPosRight = new Vector3(topRightPos.x + adjustedTileOffset, topRightPos.y, topRightPos.z);
+        CreateCornerTile(topRightPosRight, 4); // 타일 ID 4
+
+        // 위로 하나 추가 (추가된 오른쪽 타일 기준)
+        Vector3 topRightPosUp = new Vector3(topRightPosRight.x, topRightPosRight.y, topRightPosRight.z + 2.309f);
+        CreateCornerTile(topRightPosUp, 5); // 타일 ID 5
+    }
+
+    void CreateItemsOnCornerTiles()
+    {
+        for (int i = 0; i < 2; i++) // 코너가 2개니까 두 번 반복
+        {
+            GameObject itemObj = Instantiate(itemTilePrefab); // 아이템 프리팹을 생성
+            itemObj.name = $"Item_{i}";
+
+            // 코너 타일 가져오기
+            ItemHolder cornerTile = GameObject.Find($"CornerTile_{i}").GetComponent<ItemHolder>();
+            cornerTile.PlaceItem(itemObj); // 아이템을 타일에 배치
         }
     }
 }
