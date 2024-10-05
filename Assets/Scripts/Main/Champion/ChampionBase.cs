@@ -7,6 +7,7 @@ public class ChampionBase : MonoBehaviour
     private ChampionBlueprint championBlueprint;
     private SkillBlueprint skillBlueprint;
     private GameObject skillObject;
+    private BaseSkill baseSkill;
 
     private string championName;
     private ChampionLine line_first;
@@ -37,8 +38,10 @@ public class ChampionBase : MonoBehaviour
     {
         championBlueprint = blueprint;
         skillBlueprint = blueprint.SkillBlueprint;
-        championName = blueprint.ChampionName;
+        skillObject = blueprint.SkillBlueprint.SkillObject;
+        baseSkill = blueprint.SkillBlueprint.SkillObject.GetComponent<BaseSkill>();
 
+        championName = blueprint.ChampionName;
         line_first = blueprint.ChampionLine_First;
         line_second = blueprint.ChampionLine_Second;
         job_first = blueprint.ChampionJob_First;
@@ -86,7 +89,10 @@ public class ChampionBase : MonoBehaviour
 
     public void SkillAttack()
     {
-      
+        if (baseSkill == null)
+            return;
+
+        baseSkill.Skill();
     }
 
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac3d466efa6231a4fbe9ec6abe93df1e, type: 3}
-  m_Name: SkillBlueprin_Jinx
+  m_Name: SkillBlueprint_Jinx
   m_EditorClassIdentifier: 
   skillName: "\uC2E0\uB09C\uB2E4!"
   skillType: 1
@@ -33,3 +33,4 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+  skillObject: {fileID: 5956860630311503069, guid: 743991354b21bcd4bb1f84f01a6e8ef0, type: 3}

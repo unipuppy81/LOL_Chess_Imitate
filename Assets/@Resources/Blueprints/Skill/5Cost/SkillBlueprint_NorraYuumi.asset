@@ -34,3 +34,4 @@ MonoBehaviour:
     - 5
     - 7.5
     - 30
+  skillObject: {fileID: 1609899383158022440, guid: 0bcccecae4bdfb84c8fcaa54ea72d529, type: 3}
