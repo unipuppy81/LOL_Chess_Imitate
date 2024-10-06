@@ -93,3 +93,9 @@ public enum DamageType
     Critical,
     Player
 }
+
+// UI Event 타입 열거형
+public enum UIEventType
+{
+    Click, PointerDown, PointerUp, Drag,
+}
