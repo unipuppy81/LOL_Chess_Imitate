@@ -125,6 +125,7 @@ MonoBehaviour:
   s: 0
   isRectangularTile: 0
   isOccupied: 0
+  isItemTile: 0
 --- !u!114 &8134215329192798182
 MonoBehaviour:
   m_ObjectHideFlags: 0

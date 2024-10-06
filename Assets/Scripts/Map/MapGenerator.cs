@@ -1,26 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
     public int width = 7;
     public int height = 8;
-    public int rectWidth = 9; // Á÷»ç°¢Çü Å¸ÀÏÀÇ °³¼ö
-    public float desiredMapWidth = 20f; // ¿øÇÏ´Â ¸ÊÀÇ °¡·Î Å©±â (´ÜÀ§: À¯´ÏÆ¼ ¿ùµå ÁÂÇ¥)
-    public float tileSize; // Å¸ÀÏÀÇ Å©±â (ÀÚµ¿ °è»êµÉ ¿¹Á¤)
+    public int rectWidth = 9; // ì§ì‚¬ê°í˜• íƒ€ì¼ì˜ ê°œìˆ˜
+    public float desiredMapWidth = 20f; // ì›í•˜ëŠ” ë§µì˜ ê°€ë¡œ í¬ê¸° (ë‹¨ìœ„: ìœ ë‹ˆí‹° ì›”ë“œ ì¢Œí‘œ)
+    public float tileSize; // íƒ€ì¼ì˜ í¬ê¸° (ìë™ ê³„ì‚°ë  ì˜ˆì •)
 
-    public GameObject hexTilePrefab; // Çí»ç°ï Å¸ÀÏ ÇÁ¸®ÆÕ
-    public GameObject rectTilePrefab; // Á÷»ç°¢Çü Å¸ÀÏ ÇÁ¸®ÆÕ
-    public GameObject itemTilePrefab; // ¾ÆÀÌÅÛ Å¸ÀÏ ÇÁ¸®ÆÕ
+    public GameObject hexTilePrefab; // í—¥ì‚¬ê³¤ íƒ€ì¼ í”„ë¦¬íŒ¹
+    public GameObject rectTilePrefab; // ì§ì‚¬ê°í˜• íƒ€ì¼ í”„ë¦¬íŒ¹
+    public GameObject itemTilePrefab; // ì•„ì´í…œ íƒ€ì¼ í”„ë¦¬íŒ¹
 
-    public float gapBetweenTiles = 0.1f; // Å¸ÀÏ °£°İ Á¶Á¤¿ë º¯¼ö
+    public float gapBetweenTiles = 0.1f; // íƒ€ì¼ ê°„ê²© ì¡°ì •ìš© ë³€ìˆ˜
 
-    private float rectWidthSize; // »ç°¢Çü Å¸ÀÏ Æø
+    private float rectWidthSize; // ì‚¬ê°í˜• íƒ€ì¼ í­
 
-    public int maxGoldSlots = 5; // ÃÖ´ë °ñµå Ç¥½Ã Ä­ ¼ö
-    public float goldSlotSize = 1f; // °ñµå Ç¥½Ã Ä­ÀÇ Å©±â
-    public float goldSlotSpacing = 0.1f; // °ñµå Ç¥½Ã Ä­ °£ÀÇ °£°İ
+    public int maxGoldSlots = 5; // ìµœëŒ€ ê³¨ë“œ í‘œì‹œ ì¹¸ ìˆ˜
+    public float goldSlotSize = 1f; // ê³¨ë“œ í‘œì‹œ ì¹¸ì˜ í¬ê¸°
+    public float goldSlotSpacing = 0.1f; // ê³¨ë“œ í‘œì‹œ ì¹¸ ê°„ì˜ ê°„ê²©
 
     private float mapWidthSize;
     private float mapHeightSize;
@@ -28,41 +29,40 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         CalculateTileSize();
-        //GenerateMeshes();
         GenerateMap();
-        CreateCornerTiles();
+        CreateItemTiles();
         AdjustCamera();
         CreatePlayerUnits();
     }
 
     void CalculateTileSize()
     {
-        float hexWidth = Mathf.Sqrt(3); // Å¸ÀÏ Å©±â°¡ 1ÀÏ ¶§ÀÇ Çí»ç°ï Å¸ÀÏ Æø
-        float totalHexWidth = hexWidth * width + hexWidth / 2f; // Å¸ÀÏ Å©±â°¡ 1ÀÏ ¶§ÀÇ ÀüÃ¼ ¸Ê °¡·Î Å©±â
+        float hexWidth = Mathf.Sqrt(3); // íƒ€ì¼ í¬ê¸°ê°€ 1ì¼ ë•Œì˜ í—¥ì‚¬ê³¤ íƒ€ì¼ í­
+        float totalHexWidth = hexWidth * width + hexWidth / 2f; // íƒ€ì¼ í¬ê¸°ê°€ 1ì¼ ë•Œì˜ ì „ì²´ ë§µ ê°€ë¡œ í¬ê¸°
 
-        tileSize = desiredMapWidth / totalHexWidth; // ¿øÇÏ´Â ¸Ê °¡·Î Å©±â¿¡ ¸Â°Ô tileSize °è»ê
+        tileSize = desiredMapWidth / totalHexWidth; // ì›í•˜ëŠ” ë§µ ê°€ë¡œ í¬ê¸°ì— ë§ê²Œ tileSize ê³„ì‚°
 
-        float rectWidthRatio = 0.90f; // Á÷»ç°¢Çü Å¸ÀÏ ÆøÀÇ ºñÀ² (¿¹: 80%)
-        rectWidthSize = (Mathf.Sqrt(3) * tileSize) * rectWidthRatio; // Á÷»ç°¢Çü Å¸ÀÏÀÇ Æø
+        float rectWidthRatio = 0.90f; // ì§ì‚¬ê°í˜• íƒ€ì¼ í­ì˜ ë¹„ìœ¨ (ì˜ˆ: 80%)
+        rectWidthSize = (Mathf.Sqrt(3) * tileSize) * rectWidthRatio; // ì§ì‚¬ê°í˜• íƒ€ì¼ì˜ í­
     }
 
     void GenerateMap()
     {
         float hexWidth = Mathf.Sqrt(3) * tileSize;
-        float hexHeight = tileSize * 2f; // Çí»ç°ïÀÇ ³ôÀÌ
+        float hexHeight = tileSize * 2f; // í—¥ì‚¬ê³¤ì˜ ë†’ì´
 
-        // ¸ÊÀÇ ÀüÃ¼ Å©±â °è»ê
+        // ë§µì˜ ì „ì²´ í¬ê¸° ê³„ì‚°
         mapWidthSize = hexWidth * width - hexWidth / 2f;
         mapHeightSize = hexHeight * (height - 1) * 0.75f;
 
-        // ±×¸®µåÀÇ Áß¾ÓÀ» ±âÁØÀ¸·Î ¿ÀÇÁ¼Â °è»ê
+        // ê·¸ë¦¬ë“œì˜ ì¤‘ì•™ì„ ê¸°ì¤€ìœ¼ë¡œ ì˜¤í”„ì…‹ ê³„ì‚°
         float xOffset = mapWidthSize / 2f - hexWidth / 2f;
         float zOffset = mapHeightSize / 2f;
 
-        // Çí»ç°ï Å¸ÀÏ »ı¼º
+        // í—¥ì‚¬ê³¤ íƒ€ì¼ ìƒì„±
         for (int r = 0; r < height; r++)
         {
-            int numCols = width; // ¸ğµç Çà¿¡¼­ Å¸ÀÏ °³¼ö¸¦ µ¿ÀÏÇÏ°Ô ¼³Á¤
+            int numCols = width; // ëª¨ë“  í–‰ì—ì„œ íƒ€ì¼ ê°œìˆ˜ë¥¼ ë™ì¼í•˜ê²Œ ì„¤ì •
 
             for (int q = 0; q < numCols; q++)
             {
@@ -75,7 +75,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        // ¸Ç À§¿Í ¸Ç ¾Æ·¡¿¡ Á÷»ç°¢Çü Å¸ÀÏ »ı¼º
+        // ë§¨ ìœ„ì™€ ë§¨ ì•„ë˜ì— ì§ì‚¬ê°í˜• íƒ€ì¼ ìƒì„±
         CreateRectangularRow(-1, -hexHeight * 0.75f - zOffset);
         CreateRectangularRow(height, hexHeight * 0.75f * (height) - zOffset);
     }
@@ -96,7 +96,7 @@ public class MapGenerator : MonoBehaviour
         float rectRowWidth = rectWidthSize * rectWidth;
         float xOffset = rectRowWidth / 2f - rectWidthSize / 2f;
 
-        float zOffset = (tileSize * 2f * 0.75f) / 2f; // À°°¢Çü Å¸ÀÏ ³ôÀÌÀÇ Àı¹İ
+        float zOffset = (tileSize * 2f * 0.75f) / 2f; // ìœ¡ê°í˜• íƒ€ì¼ ë†’ì´ì˜ ì ˆë°˜
 
         if (row == -1)
             zPos -= zOffset + gapBetweenTiles;
@@ -122,23 +122,23 @@ public class MapGenerator : MonoBehaviour
         float hexWidth = Mathf.Sqrt(3) * tileSize;
         float hexHeight = tileSize * 2f;
 
-        // ¸ÊÀÇ ÀüÃ¼ Å©±â °è»ê
+        // ë§µì˜ ì „ì²´ í¬ê¸° ê³„ì‚°
         mapWidthSize = Mathf.Max(hexWidth * width + hexWidth / 2f, rectWidthSize * rectWidth);
         mapHeightSize = hexHeight * (height - 1) * 0.75f + hexHeight * 0.75f * 2f;
 
-        // Ä«¸Ş¶óÀÇ Áß½É À§Ä¡ °è»ê
+        // ì¹´ë©”ë¼ì˜ ì¤‘ì‹¬ ìœ„ì¹˜ ê³„ì‚°
         Vector3 centerPosition = new Vector3(0, 0, 0);
 
-        // Ä«¸Ş¶ó À§Ä¡ ¼³Á¤
-        float cameraHeight = Mathf.Max(mapWidthSize, mapHeightSize); // ¸Ê Å©±â¿¡ µû¶ó Ä«¸Ş¶ó ³ôÀÌ Á¶Á¤
+        // ì¹´ë©”ë¼ ìœ„ì¹˜ ì„¤ì •
+        float cameraHeight = Mathf.Max(mapWidthSize, mapHeightSize); // ë§µ í¬ê¸°ì— ë”°ë¼ ì¹´ë©”ë¼ ë†’ì´ ì¡°ì •
         Camera.main.transform.position = centerPosition + new Vector3(0, 18f, -21f);
         Camera.main.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
 
-        // Ä«¸Ş¶ó Åõ¿µ ¹æ½Ä ¼³Á¤
+        // ì¹´ë©”ë¼ íˆ¬ì˜ ë°©ì‹ ì„¤ì •
         Camera.main.orthographic = true;
         Camera.main.orthographicSize = cameraHeight / 1.8f;
 
-        // Ä«¸Ş¶ó Å¬¸®ÇÎ ÇÃ·¹ÀÎ ¼³Á¤
+        // ì¹´ë©”ë¼ í´ë¦¬í•‘ í”Œë ˆì¸ ì„¤ì •
         Camera.main.nearClipPlane = -10f;
         Camera.main.farClipPlane = 100f;
     }
@@ -149,77 +149,37 @@ public class MapGenerator : MonoBehaviour
         {
             GameObject unitObj = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             unitObj.name = $"Unit_{x}";
+            unitObj.tag = "Moveable";
             unitObj.transform.localScale = new Vector3(0.5f, 1f, 0.5f);
 
             Unit unit = unitObj.AddComponent<Unit>();
+            //unitObj.AddComponent<UnitMove>();
 
-            // ¸Ç ¾Æ·¡ Á÷»ç°¢Çü Å¸ÀÏÀ» °¡Á®¿É´Ï´Ù.
+            // ë§¨ ì•„ë˜ ì§ì‚¬ê°í˜• íƒ€ì¼ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
             HexTile tile = GameObject.Find($"Rect_{x}_-1").GetComponent<HexTile>();
 
             unit.PlaceOnTile(tile);
         }
     }
-    void CreateCornerTile(Vector3 position, int cornerId)
+    void CreateItemTile(Vector3 position, int cornerId)
     {
-        GameObject tile = Instantiate(rectTilePrefab, position, Quaternion.identity, this.transform);
-        tile.name = $"CornerTile_{cornerId}";
-
-        HexTile hexTile = tile.GetComponent<HexTile>();
-        hexTile.isRectangularTile = true;
-
-        // ¾ÆÀÌÅÛÀ» ³õÀ» ¼ö ÀÖ´Â ÄÄÆ÷³ÍÆ® Ãß°¡
-        ItemHolder itemHolder = tile.AddComponent<ItemHolder>();
-        itemHolder.maxItems = 8; // ÃÖ´ë 8°³ÀÇ ¾ÆÀÌÅÛÀ» ³õÀ» ¼ö ÀÖµµ·Ï ¼³Á¤
-    }
-
-    void CreateCornerTiles()
-    {
-        float cornerTileOffset = rectWidthSize * 0.6f; // ¸Ê °¡ÀåÀÚ¸®¿¡¼­ ¾à°£ ¶³¾î¶ß¸®±â À§ÇÑ ¿ÀÇÁ¼Â
-        float adjustedTileOffset = rectWidthSize; // °£°İÀ» °í·ÁÇÑ Å¸ÀÏ ¿ÀÇÁ¼Â
-
-        // ----------------------
-        // ¿ŞÂÊ ¾Æ·¡ ÄÚ³Ê
-        // ----------------------
-
-        // ±âº» ÄÚ³Ê Å¸ÀÏ
-        Vector3 bottomLeftPos = new Vector3(-mapWidthSize / 2f - cornerTileOffset, 0, -mapHeightSize / 2f - cornerTileOffset + 1f);
-        CreateCornerTile(bottomLeftPos, 0);
-
-        // ¿ŞÂÊÀ¸·Î ÇÏ³ª Ãß°¡ (¿ŞÂÊ ¾Æ·¡ ÄÚ³Ê ±âÁØ)
-        Vector3 bottomLeftPosLeft = new Vector3(bottomLeftPos.x - adjustedTileOffset, bottomLeftPos.y, bottomLeftPos.z);
-        CreateCornerTile(bottomLeftPosLeft, 2); // Å¸ÀÏ ID 2
-
-        // ¾Æ·¡·Î ÇÏ³ª Ãß°¡ (Ãß°¡µÈ ¿ŞÂÊ Å¸ÀÏ ±âÁØ)
-        Vector3 bottomLeftPosDown = new Vector3(bottomLeftPosLeft.x, bottomLeftPosLeft.y, bottomLeftPosLeft.z - 2.309f);
-        CreateCornerTile(bottomLeftPosDown, 3); // Å¸ÀÏ ID 3
-
-        // ----------------------
-        // ¿À¸¥ÂÊ À§ ÄÚ³Ê
-        // ----------------------
-
-        // ±âº» ÄÚ³Ê Å¸ÀÏ
-        Vector3 topRightPos = new Vector3(mapWidthSize / 2f + cornerTileOffset, 0, mapHeightSize / 2f + cornerTileOffset - 1f);
-        CreateCornerTile(topRightPos, 1);
-
-        // ¿À¸¥ÂÊÀ¸·Î ÇÏ³ª Ãß°¡ (¿À¸¥ÂÊ À§ ÄÚ³Ê ±âÁØ)
-        Vector3 topRightPosRight = new Vector3(topRightPos.x + adjustedTileOffset, topRightPos.y, topRightPos.z);
-        CreateCornerTile(topRightPosRight, 4); // Å¸ÀÏ ID 4
-
-        // À§·Î ÇÏ³ª Ãß°¡ (Ãß°¡µÈ ¿À¸¥ÂÊ Å¸ÀÏ ±âÁØ)
-        Vector3 topRightPosUp = new Vector3(topRightPosRight.x, topRightPosRight.y, topRightPosRight.z + 2.309f);
-        CreateCornerTile(topRightPosUp, 5); // Å¸ÀÏ ID 5
-    }
-
-    void CreateItemsOnCornerTiles()
-    {
-        for (int i = 0; i < 2; i++) // ÄÚ³Ê°¡ 2°³´Ï±î µÎ ¹ø ¹İº¹
+        GameObject tile = Instantiate(itemTilePrefab, position, Quaternion.identity, this.transform);
+        tile.name = $"ItemTile_{cornerId}";
+        if (cornerId == 1)
         {
-            GameObject itemObj = Instantiate(itemTilePrefab); // ¾ÆÀÌÅÛ ÇÁ¸®ÆÕÀ» »ı¼º
-            itemObj.name = $"Item_{i}";
-
-            // ÄÚ³Ê Å¸ÀÏ °¡Á®¿À±â
-            ItemHolder cornerTile = GameObject.Find($"CornerTile_{i}").GetComponent<ItemHolder>();
-            cornerTile.PlaceItem(itemObj); // ¾ÆÀÌÅÛÀ» Å¸ÀÏ¿¡ ¹èÄ¡
+            tile.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
     }
+    void CreateItemTiles()
+    {
+        float cornerTileOffset = rectWidthSize * 0.6f; // ë§µ ê°€ì¥ìë¦¬ì—ì„œ ì•½ê°„ ë–¨ì–´ëœ¨ë¦¬ê¸° ìœ„í•œ ì˜¤í”„ì…‹
+        float adjustedTileOffset = rectWidthSize; // ê°„ê²©ì„ ê³ ë ¤í•œ íƒ€ì¼ ì˜¤í”„ì…‹
+
+        Vector3 bottomLeftPos = new Vector3(-mapWidthSize / 2f - cornerTileOffset - 0.5f, 0, -mapHeightSize / 2f - cornerTileOffset - 0.3f);
+        CreateItemTile(bottomLeftPos, 0);
+
+        Vector3 topRightPos = new Vector3(mapWidthSize / 2f + cornerTileOffset + 0.5f, 0, mapHeightSize / 2f + cornerTileOffset + 0.3f);
+        CreateItemTile(topRightPos, 1);
+    }
+
 }
