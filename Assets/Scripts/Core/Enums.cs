@@ -51,9 +51,7 @@ public enum ChampionCost
     FiveCost
 }
 
-
 // 아이템 타입
-
 public enum ItemType
 {
     None = 0,

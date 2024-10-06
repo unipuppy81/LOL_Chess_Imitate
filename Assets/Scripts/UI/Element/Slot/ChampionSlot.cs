@@ -57,7 +57,13 @@ public class ChampionSlot : MonoBehaviour
         }.Where(attribute => attribute != "None"));
         
 
-        int startIndex = 3 - attributeString.Count; 
+        int startIndex = 3 - attributeString.Count;
+
+        for (int i = 0; i < image_Attributes.Length; i++)
+        {
+            image_Attributes[i].gameObject.SetActive(false);
+            text_Attributes[i].gameObject.SetActive(false);
+        }
 
         for (int i = 0; i < attributeString.Count; i++)
         {

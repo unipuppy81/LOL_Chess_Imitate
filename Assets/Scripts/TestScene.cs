@@ -49,7 +49,6 @@ public class TestScene : UIBase
         SetUI<Button>();
 
         SetButtonEvent("Btn_Reroll", UIEventType.Click, UpdateChampionSlot);
-
     }
 
     private void UpdateChampionSlot(PointerEventData enterEvent)
