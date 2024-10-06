@@ -31,7 +31,7 @@ public class ChampionSlot : MonoBehaviour
 
 
     [Header("Attribute String")]
-    private List<string> attributeString;
+    private List<string> attributeString = new List<string>();
     private Image[] image_Attributes;
     private TextMeshProUGUI[] text_Attributes;
 
@@ -41,6 +41,8 @@ public class ChampionSlot : MonoBehaviour
 
     public void ChampionSlotInit(ChampionBlueprint championBlueprint, Color color)
     {
+        attributeString.Clear();
+
         image_ChampionBackground.color = color;
         // Image_champion = championBlueprint.championImage;
         // image_Attribute_1 = Dic 사용해서 속성 이미지 매핑
@@ -53,6 +55,7 @@ public class ChampionSlot : MonoBehaviour
             championBlueprint.ChampionJob_First.ToString(),
             championBlueprint.ChampionJob_Second.ToString()
         }.Where(attribute => attribute != "None"));
+        
 
         int startIndex = 3 - attributeString.Count; 
 
@@ -64,6 +67,8 @@ public class ChampionSlot : MonoBehaviour
 
             text_Attributes[index].text = attributeString[i];
         }
+
+        text_GoldCost.text = Utilities.SetSlotCost(championBlueprint.ChampionCost).ToString();
     }
 
     private void AttributeInit()

@@ -1620,19 +1620,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1099330750}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1870065156}
-        m_TargetAssemblyTypeName: TestScene, Assembly-CSharp
-        m_MethodName: ChampionSlot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1099330750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2464,13 +2452,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce17c770ce03dd9409a9774232149551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  championSlot:
+  championSlotList:
   - {fileID: 52263586}
   - {fileID: 1017636319}
   - {fileID: 851251649}
   - {fileID: 923507613}
   - {fileID: 1785380342}
-  btn_Reroll: {fileID: 1099330749}
+  gameDataBlueprint: {fileID: 0}
+  shopChampionList: []
+  Level: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
