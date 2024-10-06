@@ -5,6 +5,9 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public HexTile currentTile;
+    private Vector3 offset;
+    private bool isDragging = false;
+
 
 
     public void PlaceOnTile(HexTile tile)
@@ -19,17 +22,5 @@ public class Unit : MonoBehaviour
         currentTile.isOccupied = true;
 
         transform.position = tile.transform.position + new Vector3(0, 0.5f, 0); // 유닛을 타일 위로 올림
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

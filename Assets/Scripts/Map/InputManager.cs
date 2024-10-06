@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
@@ -44,6 +44,6 @@ public class InputManager : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
     }
 }
