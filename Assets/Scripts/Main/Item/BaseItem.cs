@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Item Info")]
+    [SerializeField] private Image icon;
+    [SerializeField] private string itemName;
+    [SerializeField] private string description;
+    [SerializeField] private ItemType itemType;
 
-    // Update is called once per frame
-    void Update()
+    public void CombineItem()
     {
-        
+        //Manager.Item.CombineItem();
     }
 }
