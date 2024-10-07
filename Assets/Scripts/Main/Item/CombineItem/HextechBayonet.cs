@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HextechBayonet : MonoBehaviour
+public class HextechBayonet : BaseItem
 {
     // Start is called before the first frame update
     void Start()

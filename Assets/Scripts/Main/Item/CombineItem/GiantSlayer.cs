@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GiantSlayer : MonoBehaviour
+public class GiantSlayer : BaseItem
 {
     // Start is called before the first frame update
     void Start()

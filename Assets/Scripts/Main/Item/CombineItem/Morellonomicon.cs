@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Morellonomicon : MonoBehaviour
+public class Morellonomicon : BaseItem
 {
     // Start is called before the first frame update
     void Start()
