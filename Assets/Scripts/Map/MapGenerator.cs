@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject hexTilePrefab; // 헥사곤 타일 프리팹
     public GameObject rectTilePrefab; // 직사각형 타일 프리팹
     public GameObject itemTilePrefab; // 아이템 타일 프리팹
+    public GameObject itemPrefeb; // 아이템 타일 프리팹
 
     public float gapBetweenTiles = 0.1f; // 타일 간격 조정용 변수
 
@@ -26,13 +28,22 @@ public class MapGenerator : MonoBehaviour
     private float mapWidthSize;
     private float mapHeightSize;
 
-    void Start()
+    private void Awake()
     {
         CalculateTileSize();
         GenerateMap();
         CreateItemTiles();
         AdjustCamera();
         CreatePlayerUnits();
+        
+    }
+    void Start()
+    {
+        GameObject item1 = Instantiate(itemPrefeb, gameObject.GetComponent<ItemHandler>()._items[0].transform.position,
+            Quaternion.identity, this.transform);
+        item1.tag = "Item";
+        HexTile itempushtile = gameObject.GetComponent<ItemHandler>()._items[0].GetComponent<HexTile>();
+        itempushtile.isItemTile = true;
     }
 
     void CalculateTileSize()
@@ -83,7 +94,11 @@ public class MapGenerator : MonoBehaviour
     void CreateHexTile(Vector3 position, int q, int r)
     {
         GameObject tile = Instantiate(hexTilePrefab, position, Quaternion.identity, this.transform);
-        tile.name = $"Hex_{q}_{r}";
+        tile.name = $"Hex_{r}_{q}";
+        if(r <= 3)
+        {
+            tile.layer = LayerMask.NameToLayer("PlayerTile");
+        }
 
         HexTile hexTile = tile.GetComponent<HexTile>();
         hexTile.q = q;
@@ -111,7 +126,10 @@ public class MapGenerator : MonoBehaviour
 
             GameObject tile = Instantiate(rectTilePrefab, position, Quaternion.identity, this.transform);
             tile.name = $"Rect_{x}_{row}";
-
+            if(row == -1)
+            {
+                tile.layer = LayerMask.NameToLayer("PlayerTile");
+            }
             HexTile hexTile = tile.GetComponent<HexTile>();
             hexTile.isRectangularTile = true;
         }
@@ -169,6 +187,8 @@ public class MapGenerator : MonoBehaviour
         {
             tile.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
+        /*GameObject item1 = Instantiate(itemPrefeb, gameObject.GetComponent<ItemHandler>()._items[0].transform.position, 
+            Quaternion.identity, this.transform);*/
     }
     void CreateItemTiles()
     {
@@ -181,5 +201,4 @@ public class MapGenerator : MonoBehaviour
         Vector3 topRightPos = new Vector3(mapWidthSize / 2f + cornerTileOffset + 0.5f, 0, mapHeightSize / 2f + cornerTileOffset + 0.3f);
         CreateItemTile(topRightPos, 1);
     }
-
 }

@@ -173,7 +173,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 986f5e7d95cf98c45a664833cf1da5db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 1405685932}
   - component: {fileID: 1405685933}
   - component: {fileID: 1405685934}
+  - component: {fileID: 1405685935}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -455,6 +456,7 @@ MonoBehaviour:
   hexTilePrefab: {fileID: 5841901025388831893, guid: f83699365dab22844bf271a8a948646b, type: 3}
   rectTilePrefab: {fileID: 2737894483133301760, guid: a64cddffea9e14b43b26dd8697aeba2e, type: 3}
   itemTilePrefab: {fileID: 3640209703719670457, guid: 049576cf55499414794dab79b0e0cc41, type: 3}
+  itemPrefeb: {fileID: 1265779304732808216, guid: 8df38a3bf924837478f054d0c74cd782, type: 3}
   gapBetweenTiles: -0.6
   maxGoldSlots: 5
   goldSlotSize: 1
@@ -528,6 +530,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movableObj: {fileID: 0}
+  currentTile: {fileID: 0}
+--- !u!114 &1405685935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405685928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f619ed0e8f3689342a761c491e71a57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemObj: {fileID: 0}
+  currentItemTile: {fileID: 0}
+  _items: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

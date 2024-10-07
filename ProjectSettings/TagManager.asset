@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Moveable
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -12,10 +13,10 @@ TagManager:
   - 
   - Water
   - UI
+  - PlayerTile
+  - ItemPush
   - 
-  - 
-  - 
-  - 
+  - ItemTile
   - 
   - 
   - 
@@ -41,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ItemPush
+    uniqueID: 431713319
+    locked: 0
+  - name: ItemTile
+    uniqueID: 1774785585
     locked: 0
