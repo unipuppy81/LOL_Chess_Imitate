@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour
 {
     public HexTile currentTile;
     private Vector3 offset;
-    private bool isDragging = false;
+    //private bool isDragging = false;
 
 
 
