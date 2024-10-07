@@ -41,6 +41,8 @@ public class TestScene : UIBase
         else if(Input.GetKeyDown(KeyCode.X))
         {
             InitBtn();
+
+            Manager.Item.Init();
         }
     }
 
