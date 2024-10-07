@@ -7,7 +7,9 @@ public class ItemManager
 {
     private ItemDataContainerBlueprint itemDataBase;
     private Dictionary<string, ItemBlueprint> itemDataDictionary;
-    public Dictionary<string, ItemBlueprint> ItemDataDictionary => itemDataDictionary;
+
+
+
 
 
     private List<ItemBlueprint> totalItems; // 모든 조합 아이템
@@ -18,9 +20,14 @@ public class ItemManager
 
 
 
-    private Dictionary<(BaseItem, BaseItem), BaseItem> combinations;
+    #region Properties
+
+    public Dictionary<string, ItemBlueprint> ItemDataDictionary => itemDataDictionary;
+
+    #endregion
 
 
+    #region Init
     public void Init()
     {
         totalItems = new List<ItemBlueprint>();
@@ -29,12 +36,12 @@ public class ItemManager
         usingItem = new List<ItemBlueprint>();  
         symbolItem = new List<ItemBlueprint>();
 
-        combinations = new Dictionary<(BaseItem, BaseItem), BaseItem>();
         itemDataDictionary = new Dictionary<string, ItemBlueprint>();
 
         ParseItemData();
     }
 
+    #endregion
 
     #region ItemDataMethod
 
@@ -51,23 +58,6 @@ public class ItemManager
         }
     }
     #endregion
-
-    public void InitDic()
-    {
-        combinations = new Dictionary<(BaseItem, BaseItem), BaseItem>();
-        // 조합 추가
-        
-
-    }
-
-    public BaseItem GetCombinationResult(BaseItem item1, BaseItem item2)
-    {
-        if (combinations.TryGetValue((item1, item2), out BaseItem result))
-        {
-            return result;
-        }
-        return null; // 조합이 없는 경우
-    }
 }
 
 
