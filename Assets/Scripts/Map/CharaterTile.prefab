@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3860624087930186468}
   - component: {fileID: 3800922368203171729}
   m_Layer: 0
-  m_Name: Rect_0_-1
+  m_Name: CharaterTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,3 +124,4 @@ MonoBehaviour:
   s: 0
   isRectangularTile: 1
   isOccupied: 1
+  isItemTile: 0

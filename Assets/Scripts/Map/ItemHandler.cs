@@ -15,8 +15,10 @@ public class ItemHandler : MonoBehaviour
     [SerializeField] private GameObject currentItemTile;
 
     private const string _itemTag = "Item";
+    private bool _isReturning = false;
 
     public List<GameObject> _items = new List<GameObject>(10);
+    public GameObject itemPrefeb; // 아이템 타일 프리팹
     //[SerializeField] private bool isitem = false;
 
     private void Start()
@@ -41,6 +43,11 @@ public class ItemHandler : MonoBehaviour
             Debug.LogError("Parent object 'ItemPush' not found!");
         }
         //_items.Add
+        GameObject item1 = Instantiate(itemPrefeb, _items[0].transform.position,
+            Quaternion.identity, this.transform);
+        item1.tag = "Item";
+        HexTile itempushtile = _items[0].GetComponent<HexTile>();
+        itempushtile.isItemTile = true;
     }
 
     private void Update()
@@ -72,7 +79,7 @@ public class ItemHandler : MonoBehaviour
         {
             TouchEndedEvent();
         }
-
+        ItemReturn();
         // 캐릭터 Ray 확인용 
         if (_itemObj != null)
         {
@@ -131,8 +138,7 @@ public class ItemHandler : MonoBehaviour
             }
             else
             {
-                _itemObj.transform.position = _beforePosition;
-                currentItemTile.GetComponent<HexTile>().isItemTile = false;
+                _isReturning = true;
             }
         }
     }
@@ -164,5 +170,20 @@ public class ItemHandler : MonoBehaviour
             Debug.Log(hit.collider.gameObject);
         }
         return null;
+    }
+    private void ItemReturn()
+    {
+        // 객체가 원래 위치로 부드럽게 돌아가게 하기 위한 로직
+        if (_isReturning && _itemObj != null)
+        {
+            _itemObj.transform.position = Vector3.MoveTowards(_itemObj.transform.position, _beforePosition, Time.deltaTime * 30f);
+
+            // 원래 위치에 도달하면 반환 동작을 중지
+            if (Vector3.Distance(_itemObj.transform.position, _beforePosition) < 0.01f)
+            {
+                _isReturning = false;
+                currentItemTile.GetComponent<HexTile>().isItemTile = false;
+            }
+        }
     }
 }
