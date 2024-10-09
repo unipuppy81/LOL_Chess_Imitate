@@ -220,7 +220,7 @@ public class MapGenerator : MonoBehaviour
             Vector3 leftPos = new Vector3(xLeft, 0, zPos);
             GameObject PlayerTile = Instantiate(goldTilePrefeb, leftPos, goldTilePrefeb.transform.rotation, this.transform);
             PlayerTile.name = $"PlayerGoldTile_{i}";
-            GameObject PlayerGold = Instantiate(GoldPrefeb, PlayerTile.transform.position, transform.rotation, this.transform);
+            GameObject PlayerGold = Instantiate(goldPrefeb, PlayerTile.transform.position, transform.rotation, this.transform);
             PlayerGold.name = $"PlayerGold_{i}";
             PlayerGold.transform.SetParent(PlayerTile.transform);
             
@@ -228,7 +228,7 @@ public class MapGenerator : MonoBehaviour
             Vector3 rightPos = new Vector3(xRight, 0, zPos);
             GameObject EnemyTile = Instantiate(goldTilePrefeb, rightPos, goldTilePrefeb.transform.rotation, this.transform);
             EnemyTile.name = $"EnemyGoldTile_{i}";
-            GameObject EnemyGold = Instantiate(GoldPrefeb, EnemyTile.transform.position, transform.rotation, this.transform);
+            GameObject EnemyGold = Instantiate(goldPrefeb, EnemyTile.transform.position, transform.rotation, this.transform);
             EnemyGold.name = $"EnemyGold_{i}";
             EnemyGold.transform.SetParent(EnemyTile.transform);
         }
