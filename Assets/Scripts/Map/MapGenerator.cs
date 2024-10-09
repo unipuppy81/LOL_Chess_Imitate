@@ -6,16 +6,17 @@ using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
-    public int width = 7;
-    public int height = 8;
-    public int rectWidth = 9; // 직사각형 타일의 개수
-    public float desiredMapWidth = 20f; // 원하는 맵의 가로 크기 (단위: 유니티 월드 좌표)
-    public float tileSize; // 타일의 크기 (자동 계산될 예정)
+    private int width = 7;
+    private int height = 8;
+    private int rectWidth = 9; // 직사각형 타일의 개수
+    private float desiredMapWidth = 20f; // 원하는 맵의 가로 크기 (단위: 유니티 월드 좌표)
+    private float tileSize; // 타일의 크기 (자동 계산될 예정)
 
     public GameObject hexTilePrefab; // 헥사곤 타일 프리팹
     public GameObject rectTilePrefab; // 직사각형 타일 프리팹
     public GameObject itemTilePrefab; // 아이템 타일 프리팹
-    public GameObject goldTilePrefeb; // 아이템 타일 프리팹
+    public GameObject goldTilePrefeb; // 골드 타일 프리팹
+    public GameObject goldPrefeb;
 
     public float gapBetweenTiles = 0.1f; // 타일 간격 조정용 변수
 
@@ -35,7 +36,7 @@ public class MapGenerator : MonoBehaviour
         CreateItemTiles();
         AdjustCamera();
         CreatePlayerUnits();
-        
+        CreateGoldTiles();
     }
     void Start()
     {
@@ -196,5 +197,40 @@ public class MapGenerator : MonoBehaviour
 
         Vector3 topRightPos = new Vector3(mapWidthSize / 2f + cornerTileOffset + 0.5f, 0, mapHeightSize / 2f + cornerTileOffset + 0.3f);
         CreateItemTile(topRightPos, 1);
+    }
+    void CreateGoldTiles()
+    {
+        // 왼쪽과 오른쪽의 x 위치 계산
+        float xOffset = mapWidthSize / 2f + goldSlotSize / 2f + 0.5f;
+        float xLeft = -xOffset;
+        float xRight = xOffset;
+
+        // 골드 타일을 수직으로 중앙에 배치하기 위한 시작 z 위치 계산
+        goldSlotSpacing = 1f; // 간격을 늘림
+        float extraSpacing = 0.2f; // 추가 간격 설정
+
+        float totalGoldSlotsHeight = maxGoldSlots * goldSlotSize + (maxGoldSlots - 1) * (goldSlotSpacing + extraSpacing);
+        float startZ = -totalGoldSlotsHeight / 2f + goldSlotSize / 2f;
+
+        for (int i = 0; i < maxGoldSlots; i++)
+        {
+            float zPos = startZ + i * (goldSlotSize + goldSlotSpacing);
+
+            // 왼쪽 골드 타일 생성
+            Vector3 leftPos = new Vector3(xLeft, 0, zPos);
+            GameObject PlayerTile = Instantiate(goldTilePrefeb, leftPos, goldTilePrefeb.transform.rotation, this.transform);
+            PlayerTile.name = $"PlayerGoldTile_{i}";
+            GameObject PlayerGold = Instantiate(GoldPrefeb, PlayerTile.transform.position, transform.rotation, this.transform);
+            PlayerGold.name = $"PlayerGold_{i}";
+            PlayerGold.transform.SetParent(PlayerTile.transform);
+            
+            // 오른쪽 골드 타일 생성
+            Vector3 rightPos = new Vector3(xRight, 0, zPos);
+            GameObject EnemyTile = Instantiate(goldTilePrefeb, rightPos, goldTilePrefeb.transform.rotation, this.transform);
+            EnemyTile.name = $"EnemyGoldTile_{i}";
+            GameObject EnemyGold = Instantiate(GoldPrefeb, EnemyTile.transform.position, transform.rotation, this.transform);
+            EnemyGold.name = $"EnemyGold_{i}";
+            EnemyGold.transform.SetParent(EnemyTile.transform);
+        }
     }
 }
