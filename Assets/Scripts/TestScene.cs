@@ -8,7 +8,9 @@ public class TestScene : UIBase
 {
     [SerializeField] private List<GameObject> championSlotList;
     [SerializeField] private GameDataBlueprint gameDataBlueprint;
+    [SerializeField] private List<ItemBlueprint> itemBlueprint;
     [SerializeField] private List<string> shopChampionList;
+
 
     private bool isLoadComplete = false;
     public int Level = 1;

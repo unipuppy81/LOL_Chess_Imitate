@@ -11,7 +11,6 @@ public class BFSword : BaseItem
     }
 
     // 아이템 능력치 적용
-
     public override void ApplyItemStats()
     {
         base.ApplyItemStats();

@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class ChampionBase : MonoBehaviour
@@ -11,6 +14,9 @@ public class ChampionBase : MonoBehaviour
     private SkillBlueprint skillBlueprint;
     private GameObject skillObject;
     private BaseSkill baseSkill;
+    private Rigidbody rigid;
+    private ChampionView championView;
+    private List<ItemBlueprint> items = new List<ItemBlueprint>();
 
     private string championName;
     private ChampionLine line_first;
@@ -35,12 +41,15 @@ public class ChampionBase : MonoBehaviour
     private int purchase_Cost;
     private int sell_Cost;
 
+    private int maxItemSlot = 3;
 
-    private Rigidbody rigid;
-    private ChampionView championView;
-    
 
     #endregion
+
+
+    // 체크 전용
+    private ItemDataContainerBlueprint iDataBP;
+
 
     #region Init
 
@@ -153,5 +162,76 @@ public class ChampionBase : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Item
+
+    public void EquipItem(ItemBlueprint itemBlueprint)
+    {
+        itemBlueprint.BaseItem.ApplyItemStats();
+
+        // 조합된 아이템이 없을 경우
+        if (!HasCombinedItem())
+        {
+            // 칸이 비어있으면 추가
+            if (items.Count < maxItemSlot)
+            {
+                items.Add(itemBlueprint);
+            }
+            else
+            {
+                Debug.Log("Inventory is full!");
+            }
+        }
+        else
+        {
+            // 조합된 아이템이 있을 경우, 나머지 칸에만 조합 아이템 추가
+            if (itemBlueprint.ItemType == ItemType.Combine && items.Count < maxItemSlot)
+            {
+                items.Add(itemBlueprint);
+            }
+            else
+            {
+                Debug.Log("Cannot add CombinedItem or inventory is full!");
+            }
+        }
+
+        CombineItems();
+    }
+
+    // 아이템 조합
+    public void CombineItems()
+    {
+        if (items.Count >= 2)
+        {
+            ItemBlueprint combineItem1 = items[0];
+            ItemBlueprint combineItem2 = items[1]; 
+
+            if (combineItem1.ItemType == ItemType.Combine && combineItem2.ItemType == ItemType.Combine)
+            {
+                string newId = iDataBP.FindCombineItem(combineItem1.ItemId, combineItem2.ItemId);
+                ItemBlueprint combinedItem = Manager.Item.FindItemById(newId);
+
+                items.Add(combinedItem);
+
+                items.RemoveAt(0);
+                items.RemoveAt(0);
+            }
+            else
+            {
+                Debug.Log("Cannot combine items. Both must be CombineItems.");
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough items to combine!");
+        }
+    }
+
+    // 조합된 아이템이 있는지 확인
+    private bool HasCombinedItem()
+    {
+        return items.Exists(item => item.ItemType == ItemType.Combine);
+    }
     #endregion
 }
