@@ -1175,6 +1175,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Bundle
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11ef6a7a003773e4d92bc598cee4df61
+    m_Address: Assets/@Resources/Prefab/Champion/ProjectileFrame.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8be904174ca367a4f951dd55b05b6294
+    m_Address: Assets/@Resources/Prefab/SkillObject/2Cost/SkillObject_Ahri.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff6452ea470d0e6469fcf6b88393a054
+    m_Address: Assets/@Resources/Prefab/Champion/2Cost/ChampionFrame_Ahri.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 007dbb8dc11547a489b17ea49f471f1a, type: 2}
   m_SchemaSet:

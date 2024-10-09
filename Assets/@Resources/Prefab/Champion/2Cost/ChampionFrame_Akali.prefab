@@ -152,8 +152,9 @@ GameObject:
   - component: {fileID: 3788631964470942012}
   - component: {fileID: 5138671916796917089}
   - component: {fileID: 4803408484816773377}
+  - component: {fileID: -5870897860411847175}
   m_Layer: 0
-  m_Name: ChampionFrame
+  m_Name: ChampionFrame_Akali
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,6 +312,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46e814a0b0adc624d8a5237f627e2339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5870897860411847175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665606537432512241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b226675098d2d40ba6d028f9d45416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7162528138292096961

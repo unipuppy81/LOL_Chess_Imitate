@@ -41,8 +41,10 @@ public class ChampionBase : MonoBehaviour
     private int purchase_Cost;
     private int sell_Cost;
 
-    private int maxItemSlot = 3;
 
+    // 챔피언 로직 변수
+    private int maxItemSlot;
+    private bool isAttacking;
 
     #endregion
 
@@ -89,6 +91,8 @@ public class ChampionBase : MonoBehaviour
 
         purchase_Cost = 1;
         sell_Cost = purchase_Cost * championLevel - 1;
+
+        SetChampionLogic();
     }
 
     public void SetHpBar()
@@ -99,6 +103,12 @@ public class ChampionBase : MonoBehaviour
     public void ResetHealth()
     {
         curHp = maxHp;
+    }
+
+    public void SetChampionLogic()
+    {
+        maxItemSlot = 3;
+        isAttacking = false;
     }
 
     #endregion
@@ -118,32 +128,81 @@ public class ChampionBase : MonoBehaviour
 
     private void Update()
     {
-        
+        if (!isAttacking)
+        {
+            StartCoroutine(AttackRoutine());
+        }
     }
 
     #endregion
 
     #region Attack Method
 
-    public void CreateNormalAttack()
+    public void CreateNormalAttack(GameObject target)
     {
-
+        ChampionBase targetHealth = target.GetComponent<ChampionBase>();
+        if (targetHealth != null)
+        {
+            Debug.Log("Damage");
+            targetHealth.TakeDamage(10);
+        }
     }
 
     private IEnumerator AttackRoutine()
     {
-        yield return null;
+        isAttacking = true;
+
+        GameObject target = FindTargetInRange();
+
+        if (target == null)
+        {
+            Debug.Log("사거리 내에 없습니다.");
+            yield break;
+        }
+
+        ChampionBase targetHealth = target.GetComponent<ChampionBase>();
+
+        while (targetHealth != null && targetHealth.curHp > 0)
+        {
+            if (curMana >= maxMana)
+            {
+                UseSkill(target);
+            }
+            else
+            {
+                CreateNormalAttack(target);
+            }
+
+            yield return new WaitForSeconds(attack_Speed);
+        }
+
+        isAttacking = false; 
     }
 
-    public void SkillAttack()
+    private GameObject FindTargetInRange()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attack_Range);
+
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider.CompareTag("Enemy")) 
+            {
+                return collider.gameObject; 
+            }
+        }
+
+        return null; 
+    }
+
+    public void UseSkill(GameObject target)
     {
         if (baseSkill == null)
             return;
 
-        baseSkill.Skill();
+        baseSkill.UseSkill();
     }
 
-    public void FloatingDamage(Vector3 position, int damage)
+    public void FloatingDamage(Vector3 position, float damage)
     {
 
     }
@@ -152,7 +211,7 @@ public class ChampionBase : MonoBehaviour
 
     #region Health Method
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
 
     }

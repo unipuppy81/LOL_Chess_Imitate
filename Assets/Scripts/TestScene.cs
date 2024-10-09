@@ -10,7 +10,8 @@ public class TestScene : UIBase
     [SerializeField] private GameDataBlueprint gameDataBlueprint;
     [SerializeField] private List<ItemBlueprint> itemBlueprint;
     [SerializeField] private List<string> shopChampionList;
-
+    [SerializeField] private GameObject championObject;
+    [SerializeField] private GameObject targetObject;
 
     private bool isLoadComplete = false;
     public int Level = 1;
@@ -22,6 +23,7 @@ public class TestScene : UIBase
             if (count >= totalCount)
             {
                 isLoadComplete = true;
+                championObject = null;
                 Debug.Log("Complete");
             }
         });
@@ -31,18 +33,24 @@ public class TestScene : UIBase
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            var obj = Manager.Asset.InstantiatePrefab("ChampionFrame");
-            obj.transform.position = transform.position;
+            championObject = Manager.Asset.InstantiatePrefab("ChampionFrame_Ahri");
+            championObject.transform.position = new Vector3(0,0,0);
 
-            if(obj == null)
+            if(championObject == null)
             {
                 Debug.Log("Null");
             }
             gameDataBlueprint = Manager.Asset.GetBlueprint("GameDataBlueprint") as GameDataBlueprint;
+
+
         }
         else if(Input.GetKeyDown(KeyCode.X))
         {
             InitBtn();
+            BaseSkill bSkill = championObject.GetComponent<BaseSkill>();
+
+            bSkill.UseSkill();
+            bSkill.UseSkillTarget(targetObject);
 
             Manager.Item.Init();
         }
