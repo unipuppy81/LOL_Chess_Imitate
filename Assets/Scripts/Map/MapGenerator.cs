@@ -15,7 +15,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject hexTilePrefab; // 헥사곤 타일 프리팹
     public GameObject rectTilePrefab; // 직사각형 타일 프리팹
     public GameObject itemTilePrefab; // 아이템 타일 프리팹
-    public GameObject itemPrefeb; // 아이템 타일 프리팹
+    public GameObject goldTilePrefeb; // 아이템 타일 프리팹
 
     public float gapBetweenTiles = 0.1f; // 타일 간격 조정용 변수
 
@@ -39,11 +39,7 @@ public class MapGenerator : MonoBehaviour
     }
     void Start()
     {
-        GameObject item1 = Instantiate(itemPrefeb, gameObject.GetComponent<ItemHandler>()._items[0].transform.position,
-            Quaternion.identity, this.transform);
-        item1.tag = "Item";
-        HexTile itempushtile = gameObject.GetComponent<ItemHandler>()._items[0].GetComponent<HexTile>();
-        itempushtile.isItemTile = true;
+        
     }
 
     void CalculateTileSize()

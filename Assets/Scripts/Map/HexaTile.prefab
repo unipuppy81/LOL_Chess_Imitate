@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 3257427940712785404}
   - component: {fileID: 8134215329192798182}
   m_Layer: 0
-  m_Name: Hex_0_0
+  m_Name: HexaTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
