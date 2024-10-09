@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GoldDisplay : MonoBehaviour
 {
-    public int playerGold = 0;
-    public int enemyGold = 0;
+    private int playerGold = 0;
+    private int enemyGold = 0;
 
     [SerializeField]
     private List<GameObject> PlayerGoldList = new List<GameObject>();
@@ -14,8 +14,7 @@ public class GoldDisplay : MonoBehaviour
 
     public int currentGold = 0;
 
-    public int maxGoldSlots = 5;
-    public bool isGold = false;
+    private int maxGold = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +29,9 @@ public class GoldDisplay : MonoBehaviour
         //Debug.Log(activeGoldTiles);
     }
 
-    void GoldListAdd()
+    private void GoldListAdd()
     {
-        for (int i = 0; i < maxGoldSlots; i++)
+        for (int i = 0; i < maxGold; i++)
         {
             GameObject leftTile = GameObject.Find($"PlayerGold_{i}");
             if (leftTile != null)
@@ -50,11 +49,11 @@ public class GoldDisplay : MonoBehaviour
         }
     }
 
-    public void UpdateGoldTiles()
+    private void UpdateGoldTiles()
     {
         // 활성화할 골드 타일의 수 계산
-        int activePlayerGold = Mathf.Clamp(playerGold / 10, 0, maxGoldSlots);
-        int activeEnemyGold = Mathf.Clamp(enemyGold / 10, 0, maxGoldSlots);
+        int activePlayerGold = Mathf.Clamp(playerGold / 10, 0, maxGold);
+        int activeEnemyGold = Mathf.Clamp(enemyGold / 10, 0, maxGold);
 
         // 왼쪽 골드 타일 업데이트
         for (int i = 0; i < PlayerGoldList.Count; i++)
@@ -74,5 +73,19 @@ public class GoldDisplay : MonoBehaviour
             else
                 EnemyGoldList[index].SetActive(false);
         }
+    }
+
+    public void AddGold(int amount)
+    {
+        playerGold += amount;
+        playerGold = Mathf.Clamp(playerGold, 0, maxGold);
+        UpdateGoldTiles();
+    }
+
+    public void SpendGold(int amount)
+    {
+        playerGold -= amount;
+        playerGold = Mathf.Clamp(playerGold, 0, maxGold);
+        UpdateGoldTiles();
     }
 }

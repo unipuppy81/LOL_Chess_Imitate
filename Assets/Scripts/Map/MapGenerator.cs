@@ -6,17 +6,17 @@ using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
-    public int width = 7;
-    public int height = 8;
-    public int rectWidth = 9; // 직사각형 타일의 개수
-    public float desiredMapWidth = 20f; // 원하는 맵의 가로 크기 (단위: 유니티 월드 좌표)
-    public float tileSize; // 타일의 크기 (자동 계산될 예정)
+    private int width = 7;
+    private int height = 8;
+    private int rectWidth = 9; // 직사각형 타일의 개수
+    private float desiredMapWidth = 20f; // 원하는 맵의 가로 크기 (단위: 유니티 월드 좌표)
+    private float tileSize; // 타일의 크기 (자동 계산될 예정)
 
     public GameObject hexTilePrefab; // 헥사곤 타일 프리팹
     public GameObject rectTilePrefab; // 직사각형 타일 프리팹
     public GameObject itemTilePrefab; // 아이템 타일 프리팹
     public GameObject goldTilePrefeb; // 골드 타일 프리팹
-    public GameObject GoldPrefeb;
+    public GameObject goldPrefeb;
 
     public float gapBetweenTiles = 0.1f; // 타일 간격 조정용 변수
 
