@@ -18,7 +18,9 @@ MonoBehaviour:
     itemName: "B.F \uB300\uAC80"
     description: "\uACF5\uACA9\uB825 +10%"
     itemType: 1
-    itemAttribute: []
+    itemAttribute:
+    - ItemAttributeType: 1
+      AttributeValue: 0.1
     baseItem: {fileID: 5801655367137927557, guid: bf53afb2abe076443b3db647cc252b39, type: 3}
   - icon: {fileID: 0}
     itemId: A002
