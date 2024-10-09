@@ -448,11 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a5aeeba5813374a8b52b43a1c4bcdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 7
-  height: 8
-  rectWidth: 9
-  desiredMapWidth: 20
-  tileSize: 1
   hexTilePrefab: {fileID: 5841901025388831893, guid: f83699365dab22844bf271a8a948646b, type: 3}
   rectTilePrefab: {fileID: 2737894483133301760, guid: a64cddffea9e14b43b26dd8697aeba2e, type: 3}
   itemTilePrefab: {fileID: 3640209703719670457, guid: 049576cf55499414794dab79b0e0cc41, type: 3}
@@ -515,13 +510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511578c4954a604ba56b63ad94d057b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGold: 0
-  enemyGold: 0
   PlayerGoldList: []
   EnemyGoldList: []
   currentGold: 0
-  maxGoldSlots: 5
-  isGold: 0
 --- !u!114 &1405685934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,13 +572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511578c4954a604ba56b63ad94d057b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGold: 0
-  enemyGold: 0
   PlayerGoldList: []
   EnemyGoldList: []
   currentGold: 0
-  maxGoldSlots: 5
-  isGold: 0
 --- !u!4 &2126641385
 Transform:
   m_ObjectHideFlags: 0
@@ -597,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 2126641383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.23792, y: 4.7743607, z: -2.3271737}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -609,5 +596,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 1405685930}
   - {fileID: 2126641385}
+  - {fileID: 1405685930}
