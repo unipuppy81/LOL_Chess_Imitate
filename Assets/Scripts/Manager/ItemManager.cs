@@ -20,6 +20,11 @@ public class ItemManager
 
 
 
+    public List<ItemBlueprint> TotalItmes => totalItems;
+    public List<ItemBlueprint> NormalItem => NormalItem;
+    public List<ItemBlueprint> CombineItem => combineItem;
+    public List<ItemBlueprint> UsingItem => usingItem;
+    public List<ItemBlueprint> SymbolItem => symbolItem;
     #region Properties
 
     public Dictionary<string, ItemBlueprint> ItemDataDictionary => itemDataDictionary;
@@ -56,6 +61,11 @@ public class ItemManager
             combineItem = itemDataBase.FindItemType('B');
             symbolItem = itemDataBase.FindItemType('C');
         }
+    }
+
+    public ItemBlueprint FindItemById(string id)
+    {
+        return totalItems.FirstOrDefault(item => item.ItemId == id);
     }
     #endregion
 }

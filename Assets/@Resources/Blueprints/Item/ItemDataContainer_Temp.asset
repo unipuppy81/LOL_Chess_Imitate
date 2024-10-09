@@ -19,6 +19,7 @@ MonoBehaviour:
     description: "\uACF5\uACA9\uB825 +10%"
     itemType: 1
     itemAttribute: []
+    baseItem: {fileID: 5801655367137927557, guid: bf53afb2abe076443b3db647cc252b39, type: 3}
   - icon: {fileID: 0}
     itemId: A002
     itemName: "\uACE1\uAD81"
@@ -27,6 +28,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 2
       AttributeValue: 0.1
+    baseItem: {fileID: 4870259966177533082, guid: b368763c267caa342a7d3929aa230754, type: 3}
   - icon: {fileID: 0}
     itemId: A003
     itemName: "\uC1E0\uC0AC\uC2AC \uC870\uB07C"
@@ -35,6 +37,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 3
       AttributeValue: 20
+    baseItem: {fileID: 3702625022200983971, guid: d33a533891290094aab375e812ce097c, type: 3}
   - icon: {fileID: 0}
     itemId: A004
     itemName: "\uC74C\uC804\uC790 \uB9DD\uD1A0"
@@ -43,6 +46,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 5
       AttributeValue: 20
+    baseItem: {fileID: 2504519346164500576, guid: dbeb87263f414844ebf4bbf7ec65a744, type: 3}
   - icon: {fileID: 0}
     itemId: A005
     itemName: "\uC4F8\uB370\uC5C6\uC774 \uD070 \uC9C0\uD321\uC774"
@@ -51,6 +55,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 4
       AttributeValue: 10
+    baseItem: {fileID: 7989592551058038698, guid: 95042d46bab04f849a84d19c6449a07f, type: 3}
   - icon: {fileID: 0}
     itemId: A006
     itemName: "\uC5EC\uC2E0\uC758 \uB208\uBB3C"
@@ -59,6 +64,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 6
       AttributeValue: 15
+    baseItem: {fileID: 8723500661661373584, guid: a9080fde828ad1e4aa92089decc34032, type: 3}
   - icon: {fileID: 0}
     itemId: A007
     itemName: "\uAC70\uC778\uC758 \uD5C8\uB9AC\uB760"
@@ -67,6 +73,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 2306437037108905628, guid: 5f07e328e7c7fd0499dfbccaefadc1be, type: 3}
   - icon: {fileID: 0}
     itemId: A008
     itemName: "\uC5F0\uC2B5\uC6A9 \uC7A5\uAC11"
@@ -75,6 +82,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 3736508538503068811, guid: 4c559765cf092d3438770eee8eebd6c1, type: 3}
   - icon: {fileID: 0}
     itemId: B001
     itemName: "\uC8FD\uC74C\uC758 \uAC80"
@@ -85,6 +93,7 @@ MonoBehaviour:
       AttributeValue: 0.5
     - ItemAttributeType: 10
       AttributeValue: 0.08
+    baseItem: {fileID: 4165668412799775147, guid: 180d0a1381b2a5e4490092e0bb348b2b, type: 3}
   - icon: {fileID: 0}
     itemId: B002
     itemName: "\uAC70\uC778 \uD559\uC0B4\uC790"
@@ -98,6 +107,7 @@ MonoBehaviour:
       AttributeValue: 0.1
     - ItemAttributeType: 4
       AttributeValue: 25
+    baseItem: {fileID: 6431738968859786991, guid: fc5bc199cbf6b034bac84b496e5b7875, type: 3}
   - icon: {fileID: 0}
     itemId: B003
     itemName: "\uBC24\uC758 \uB05D\uC790\uB77D"
@@ -111,6 +121,7 @@ MonoBehaviour:
       AttributeValue: 0.1
     - ItemAttributeType: 3
       AttributeValue: 20
+    baseItem: {fileID: 8093305227183146397, guid: b0bf00328e25e8144af4e2f3e5bb733a, type: 3}
   - icon: {fileID: 0}
     itemId: B004
     itemName: "\uD53C\uBC14\uB77C\uAE30"
@@ -127,6 +138,7 @@ MonoBehaviour:
       AttributeValue: 0.2
     - ItemAttributeType: 5
       AttributeValue: 20
+    baseItem: {fileID: 2878623052741285220, guid: 82d4e8c284d309e49b0035d73b47f1cf, type: 3}
   - icon: {fileID: 0}
     itemId: B005
     itemName: "\uB9C8\uBC95\uACF5\uD559 \uCD1D\uAC80"
@@ -141,6 +153,7 @@ MonoBehaviour:
       AttributeValue: 15
     - ItemAttributeType: 9
       AttributeValue: 0.2
+    baseItem: {fileID: 1137857609358987307, guid: 629c77abcf565234496940014b3776c7, type: 3}
   - icon: {fileID: 0}
     itemId: B006
     itemName: "\uC1FC\uC9C4\uC758 \uCC3D"
@@ -153,6 +166,7 @@ MonoBehaviour:
       AttributeValue: 0.15
     - ItemAttributeType: 4
       AttributeValue: 15
+    baseItem: {fileID: 4900593300616239241, guid: 54e2a39617a13ab4cbf2a4147dd6a920, type: 3}
   - icon: {fileID: 0}
     itemId: B007
     itemName: "\uC2A4\uD14C\uB77D\uC758 \uB3C4\uC804"
@@ -164,6 +178,7 @@ MonoBehaviour:
       AttributeValue: 0.15
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 4718951600311286357, guid: 2ea208ad5416fad409bea5079d7b447b, type: 3}
   - icon: {fileID: 0}
     itemId: B008
     itemName: "\uBB34\uD55C\uC758 \uB300\uAC80"
@@ -177,6 +192,7 @@ MonoBehaviour:
       AttributeValue: 0.35
     - ItemAttributeType: 8
       AttributeValue: 0.35
+    baseItem: {fileID: 7529686004878157367, guid: df4583cd7599e1f419e51836fbea1459, type: 3}
   - icon: {fileID: 0}
     itemId: B009
     itemName: "\uBD89\uC740 \uB369\uAD74\uC815\uB839"
@@ -191,6 +207,7 @@ MonoBehaviour:
       AttributeValue: 0.35
     - ItemAttributeType: 8
       AttributeValue: 0.06
+    baseItem: {fileID: 7816595450951111733, guid: 2a82964c5e39a3048b11b93947f714ce, type: 3}
   - icon: {fileID: 0}
     itemId: B010
     itemName: "\uAC70\uC778\uC758 \uACB0\uC758"
@@ -204,6 +221,7 @@ MonoBehaviour:
       AttributeValue: 0.1
     - ItemAttributeType: 3
       AttributeValue: 20
+    baseItem: {fileID: 724776634074703019, guid: d80237028204e2648b5f4098fbfd6983, type: 3}
   - icon: {fileID: 0}
     itemId: B011
     itemName: "\uB8E8\uB09C\uC758 \uD5C8\uB9AC\uCF00\uC778"
@@ -218,6 +236,7 @@ MonoBehaviour:
       AttributeValue: 0.1
     - ItemAttributeType: 5
       AttributeValue: 20
+    baseItem: {fileID: 5825141875238602016, guid: 53d7e802c87dec44790d5b1a86960d30, type: 3}
   - icon: {fileID: 0}
     itemId: B012
     itemName: "\uAD6C\uC778\uC218\uC758 \uACA9\uB178\uAC80"
@@ -229,6 +248,7 @@ MonoBehaviour:
       AttributeValue: 0.1
     - ItemAttributeType: 4
       AttributeValue: 10
+    baseItem: {fileID: 1193320665613188228, guid: 46694368d16ad2d42b5ef91b64660fb9, type: 3}
   - icon: {fileID: 0}
     itemId: B013
     itemName: "\uC2A4\uD0DC\uD2F1\uC758 \uB2E8\uAC80"
@@ -243,6 +263,7 @@ MonoBehaviour:
       AttributeValue: 15
     - ItemAttributeType: 6
       AttributeValue: 15
+    baseItem: {fileID: 8940848192455256892, guid: 7d00314f4a7b2594dac2a9d96bd358ca, type: 3}
   - icon: {fileID: 0}
     itemId: B014
     itemName: "\uB0B4\uC154\uC758 \uC774\uBE68"
@@ -256,6 +277,7 @@ MonoBehaviour:
       AttributeValue: 10
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 7998120314720459194, guid: 798529afe66e15a448c3f2197fdc0896, type: 3}
   - icon: {fileID: 0}
     itemId: B015
     itemName: "\uCD5C\uD6C4\uC758 \uC18D\uC0AD\uC784"
@@ -269,6 +291,7 @@ MonoBehaviour:
       AttributeValue: 0.2
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 4886951458643682749, guid: 97472cb6733713d4fb021365215733d6, type: 3}
   - icon: {fileID: 0}
     itemId: B016
     itemName: "\uB364\uBD88 \uC870\uB07C"
@@ -280,6 +303,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 3
       AttributeValue: 55
+    baseItem: {fileID: 7673507428030255622, guid: 64cf0ea04ff4d2b42849911066305e4c, type: 3}
   - icon: {fileID: 0}
     itemId: B017
     itemName: "\uAC00\uACE0\uC77C \uB3CC\uAC11\uC637"
@@ -294,6 +318,7 @@ MonoBehaviour:
       AttributeValue: 25
     - ItemAttributeType: 7
       AttributeValue: 100
+    baseItem: {fileID: 9004885347788267736, guid: de6d10c0d90af824fbcf35a95fb6bbdd, type: 3}
   - icon: {fileID: 0}
     itemId: B018
     itemName: "\uD06C\uB77C\uC6B4\uAC00\uB4DC"
@@ -308,6 +333,7 @@ MonoBehaviour:
       AttributeValue: 20
     - ItemAttributeType: 7
       AttributeValue: 100
+    baseItem: {fileID: 4441229629842622365, guid: 30b12bffa84bd3344aa0dfa3c8489312, type: 3}
   - icon: {fileID: 0}
     itemId: B019
     itemName: "\uC218\uD638\uC790\uC758 \uB9F9\uC138"
@@ -321,6 +347,7 @@ MonoBehaviour:
       AttributeValue: 20
     - ItemAttributeType: 6
       AttributeValue: 20
+    baseItem: {fileID: 8551477110298497880, guid: 98d2ec84546d939498f9bd868830da44, type: 3}
   - icon: {fileID: 0}
     itemId: B020
     itemName: "\uD0DC\uC591\uBD88\uAF43 \uB9DD\uD1A0"
@@ -335,6 +362,7 @@ MonoBehaviour:
       AttributeValue: 250
     - ItemAttributeType: 3
       AttributeValue: 20
+    baseItem: {fileID: 3799826522839909132, guid: 5a26905e2453abd4ab56ed754326688c, type: 3}
   - icon: {fileID: 0}
     itemId: B021
     itemName: "\uAD73\uAC74\uD55C \uC2EC\uC7A5"
@@ -348,6 +376,7 @@ MonoBehaviour:
       AttributeValue: 20
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 5767172804401513297, guid: 695905dd7f799384394b213bc90d02e1, type: 3}
   - icon: {fileID: 0}
     itemId: B022
     itemName: "\uC6A9\uC758 \uBC1C\uD1B1"
@@ -357,6 +386,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 5
       AttributeValue: 65
+    baseItem: {fileID: 6706582153909045984, guid: 29f6a2040d82d1c4a8d150594ee9643b, type: 3}
   - icon: {fileID: 0}
     itemId: B023
     itemName: "\uC774\uC628 \uCDA9\uACA9\uAE30"
@@ -372,6 +402,7 @@ MonoBehaviour:
       AttributeValue: 15
     - ItemAttributeType: 5
       AttributeValue: 25
+    baseItem: {fileID: 3430324237282467489, guid: 6e06bfe6376ec0840816fa9e61515614, type: 3}
   - icon: {fileID: 0}
     itemId: B024
     itemName: "\uC801\uC751\uD615 \uD22C\uAD6C"
@@ -388,6 +419,7 @@ MonoBehaviour:
       AttributeValue: 20
     - ItemAttributeType: 6
       AttributeValue: 15
+    baseItem: {fileID: 2774775132484370001, guid: c787b6f7dba2722439954383fb322029, type: 3}
   - icon: {fileID: 0}
     itemId: B025
     itemName: "\uC800\uB141\uAC11\uC8FC"
@@ -400,6 +432,7 @@ MonoBehaviour:
       AttributeValue: 150
     - ItemAttributeType: 5
       AttributeValue: 20
+    baseItem: {fileID: 4963603523511087534, guid: ea50986a4ea8b9a4caca9c875e61f614, type: 3}
   - icon: {fileID: 0}
     itemId: B026
     itemName: "\uC218\uC740"
@@ -414,6 +447,7 @@ MonoBehaviour:
       AttributeValue: 20
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 5408429455382102170, guid: 379ade4e90637434392ce30a37cc894b, type: 3}
   - icon: {fileID: 0}
     itemId: B027
     itemName: "\uB77C\uBC14\uB3C8\uC758 \uC8FD\uC74C\uBAA8\uC790"
@@ -424,6 +458,7 @@ MonoBehaviour:
       AttributeValue: 50
     - ItemAttributeType: 10
       AttributeValue: 0.15
+    baseItem: {fileID: 979691241241991546, guid: b6665386f01d67543bfb5e06357b03db, type: 3}
   - icon: {fileID: 0}
     itemId: B028
     itemName: "\uB300\uCC9C\uC0AC\uC758 \uC9C0\uD321\uC774"
@@ -435,6 +470,7 @@ MonoBehaviour:
       AttributeValue: 15
     - ItemAttributeType: 4
       AttributeValue: 20
+    baseItem: {fileID: 5083584726466235783, guid: 3c6fac17249acc149b6e895f90704930, type: 3}
   - icon: {fileID: 0}
     itemId: B029
     itemName: "\uBAA8\uB810\uB85C\uB178\uBBF8\uCF58"
@@ -451,6 +487,7 @@ MonoBehaviour:
       AttributeValue: 25
     - ItemAttributeType: 2
       AttributeValue: 0.1
+    baseItem: {fileID: 4330403709750707730, guid: 6b06891e1c43a7c439934da33d69f2e4, type: 3}
   - icon: {fileID: 0}
     itemId: B030
     itemName: "\uBCF4\uC11D \uAC74\uD2C0\uB9BF"
@@ -464,6 +501,7 @@ MonoBehaviour:
       AttributeValue: 35
     - ItemAttributeType: 8
       AttributeValue: 0.35
+    baseItem: {fileID: 4184096283776099091, guid: fde35b15c292ff842b7a9a6a3f23ac61, type: 3}
   - icon: {fileID: 0}
     itemId: B031
     itemName: "\uD478\uB978 \uD30C\uC218\uAFBC"
@@ -478,6 +516,7 @@ MonoBehaviour:
       AttributeValue: 0.15
     - ItemAttributeType: 4
       AttributeValue: 15
+    baseItem: {fileID: 3104196364060358435, guid: 944a489d08ad2fb43a07a2f1805f5f9c, type: 3}
   - icon: {fileID: 0}
     itemId: B032
     itemName: "\uAD6C\uC6D0"
@@ -491,6 +530,7 @@ MonoBehaviour:
       AttributeValue: 150
     - ItemAttributeType: 6
       AttributeValue: 15
+    baseItem: {fileID: 3901433479150990222, guid: 544d406e85181d14bbe5089edc3c5d39, type: 3}
   - icon: {fileID: 0}
     itemId: B033
     itemName: "\uC815\uC758\uC758 \uC190\uAE38"
@@ -503,6 +543,7 @@ MonoBehaviour:
       AttributeValue: 15
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 3406255202771142675, guid: 8c92b2a86c4909e40b4f8dd52ae6a476, type: 3}
   - icon: {fileID: 0}
     itemId: B034
     itemName: "\uC6CC\uBAA8\uADF8\uC758 \uAC11\uC637"
@@ -511,6 +552,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 600
+    baseItem: {fileID: 4598583804638808653, guid: 546b82db4b1c54d4ca854d45ed3d1d19, type: 3}
   - icon: {fileID: 0}
     itemId: B035
     itemName: "\uBC29\uD328\uD30C\uAD34\uC790"
@@ -526,6 +568,7 @@ MonoBehaviour:
       AttributeValue: 10
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 2630774542458098053, guid: e74e99da6d3a1a245b4c5f06f6210b3a, type: 3}
   - icon: {fileID: 0}
     itemId: B036
     itemName: "\uB3C4\uC801\uC758 \uC7A5\uAC11"
@@ -537,12 +580,14 @@ MonoBehaviour:
       AttributeValue: 150
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 3698363011745614332, guid: b9c8c6d9a41fff7408cb0b005e69f475, type: 3}
   - icon: {fileID: 0}
     itemId: A009
     itemName: "\uB4A4\uC9D1\uAC1C"
     description: "\uBB34\uC2A8 \uC4F8\uBAA8\uAC00 \uC788\uC744 \uD150\uB370..."
     itemType: 1
     itemAttribute: []
+    baseItem: {fileID: 4805164731729591675, guid: 558e9e5e5e905db41b73e9a3f0a31b48, type: 3}
   - icon: {fileID: 0}
     itemId: A010
     itemName: "\uD504\uB77C\uC774\uD32C"
@@ -550,6 +595,7 @@ MonoBehaviour:
       \uB2EC\uB9AC \uC788\uC744\uAE4C\uC694?"
     itemType: 1
     itemAttribute: []
+    baseItem: {fileID: 3345960520357591917, guid: ae0df3e09b7f9664eb5256973ece1303, type: 3}
   - icon: {fileID: 0}
     itemId: C001
     itemName: "\uB2EC\uCF64\uC220\uC0AC \uC0C1\uC9D5"
@@ -559,6 +605,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 1
       AttributeValue: 0.1
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C002
     itemName: "\uD654\uC5FC \uC0C1\uC9D5"
@@ -567,6 +614,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 2
       AttributeValue: 0.1
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C003
     itemName: "\uC11C\uB9AC \uC0C1\uC9D5"
@@ -575,6 +623,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 3
       AttributeValue: 20
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C004
     itemName: "\uB9C8\uB140 \uC0C1\uC9D5"
@@ -583,6 +632,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 5
       AttributeValue: 20
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C005
     itemName: "\uCC28\uC6D0\uBB38 \uC0C1\uC9D5"
@@ -592,6 +642,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 4
       AttributeValue: 0.1
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C006
     itemName: "\uC694\uC815 \uC0C1\uC9D5"
@@ -600,6 +651,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 6
       AttributeValue: 15
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C007
     itemName: "\uC12C\uB729\uD55C \uD798 \uC0C1\uC9D5"
@@ -609,6 +661,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C008
     itemName: "\uBC8C\uAFC0\uC220\uC0AC \uC0C1\uC9D5"
@@ -618,6 +671,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 8
       AttributeValue: 0.2
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C009
     itemName: "\uC0AC\uB0E5\uAFBC \uC0C1\uC9D5"
@@ -627,6 +681,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C010
     itemName: "\uC1C4\uB3C4\uC790 \uC0C1\uC9D5"
@@ -636,6 +691,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C011
     itemName: "\uC694\uC0C8 \uC0C1\uC9D5"
@@ -644,6 +700,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C012
     itemName: "\uBCF4\uD638\uC220\uC0AC \uC0C1\uC9D5"
@@ -653,6 +710,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C013
     itemName: "\uC694\uC220\uC0AC \uC0C1\uC9D5"
@@ -662,6 +720,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C014
     itemName: "\uD559\uC790 \uC0C1\uC9D5"
@@ -670,6 +729,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C015
     itemName: "\uD615\uC0C1\uBCC0\uD658\uC790 \uC0C1\uC9D5"
@@ -679,6 +739,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C016
     itemName: "\uC804\uC0AC \uC0C1\uC9D5"
@@ -687,6 +748,7 @@ MonoBehaviour:
     itemAttribute:
     - ItemAttributeType: 7
       AttributeValue: 150
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C017
     itemName: "\uC804\uB7B5\uAC00\uC758 \uC655\uAD00"
@@ -695,6 +757,7 @@ MonoBehaviour:
       \uC2EC\uC7A5...\""
     itemType: 4
     itemAttribute: []
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C018
     itemName: "\uC804\uB7B5\uAC00\uC758 \uB9DD\uD1A0"
@@ -703,6 +766,7 @@ MonoBehaviour:
       10%\t\n\n\"...\uADF8\uB9AC\uACE0 \uC57D\uAC04\uC758 \uD589\uC6B4.\""
     itemType: 4
     itemAttribute: []
+    baseItem: {fileID: 0}
   - icon: {fileID: 0}
     itemId: C0189
     itemName: "\uC804\uB7B5\uAC00\uC758 \uBC29\uD328"
@@ -711,6 +775,7 @@ MonoBehaviour:
       10%\t\n\n\"...\uADF8\uB9AC\uACE0 \uC57D\uAC04\uC758 \uD589\uC6B4.\""
     itemType: 4
     itemAttribute: []
+    baseItem: {fileID: 0}
   itemCombineDesk:
   - firstItem: A001
     secondItem: A001

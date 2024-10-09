@@ -1115,6 +1115,66 @@ MonoBehaviour:
     m_SerializedLabels:
     - Bundle
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c559765cf092d3438770eee8eebd6c1
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/PracticeGloves.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d33a533891290094aab375e812ce097c
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/ChainVest.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf53afb2abe076443b3db647cc252b39
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/BFSword.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbeb87263f414844ebf4bbf7ec65a744
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/NegatronCloak.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f07e328e7c7fd0499dfbccaefadc1be
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/GiantBelt.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae0df3e09b7f9664eb5256973ece1303
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/FryingPan.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95042d46bab04f849a84d19c6449a07f
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/MagicWand.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 558e9e5e5e905db41b73e9a3f0a31b48
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/Flipper.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b368763c267caa342a7d3929aa230754
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/RecurveBow.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9080fde828ad1e4aa92089decc34032
+    m_Address: Assets/@Resources/Prefab/Item/NormalItem/GoddnessTear.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 007dbb8dc11547a489b17ea49f471f1a, type: 2}
   m_SchemaSet:

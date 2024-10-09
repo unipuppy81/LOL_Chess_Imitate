@@ -11,6 +11,7 @@ public static class Utilities
         return obj.GetComponent<T>() ?? obj.AddComponent<T>();
     }
 
+    #region Cost Color
     private static string SetCostColor(ChampionCost championCost)
     {
         switch (championCost)
@@ -35,21 +36,24 @@ public static class Utilities
         ColorUtility.TryParseHtmlString(SetCostColor(championCost), out Color color);
         return color;
     }
+    #endregion
 
+
+    #region Cost IntValue
     private static int SetCost(ChampionCost championCost)
     {
         switch (championCost)
         {
             case ChampionCost.OneCost:
-                return 1; // 회색
+                return 1;
             case ChampionCost.TwoCost:
-                return 2; // 녹색
+                return 2;
             case ChampionCost.ThreeCost:
-                return 3; // 파란색
+                return 3; 
             case ChampionCost.FourCost:
-                return 4; // 보라색
+                return 4; 
             case ChampionCost.FiveCost:
-                return 5; // 노란색
+                return 5;
             default:
                 return 0;
         }
@@ -60,4 +64,45 @@ public static class Utilities
         int cost = SetCost(championCost);
         return cost;
     }
+    #endregion
+
+    #region ItemAttribute Description
+
+    private static string SetDescription(ItemAttributeType iType)
+    {
+        switch (iType)
+        {
+            case ItemAttributeType.AD_Power:
+                return "공격력";
+            case ItemAttributeType.AD_Speed:
+                return "공격 속도";
+            case ItemAttributeType.AD_Defense:
+                return "방어력";
+            case ItemAttributeType.AP_Power:
+                return "주문력";
+            case ItemAttributeType.AP_Defense:
+                return "마법 저항력";
+            case ItemAttributeType.Mana:
+                return "마나";
+            case ItemAttributeType.HP:
+                return "체력";
+            case ItemAttributeType.CriticalPercent:
+                return "치명타 확률";
+            case ItemAttributeType.BloodSuck:
+                return "모든 피해 흡혈";
+            case ItemAttributeType.Total_Power:
+                return "피해량";
+            case ItemAttributeType.Special:
+                return "내구력";
+            default:
+                return "등록되지 않은 타입";
+        }
+    }
+
+    public static string SetItemAttributeDescription(ItemAttributeType iType)
+    {
+        string desc = SetDescription(iType);
+        return desc;
+    }
+    #endregion
 }

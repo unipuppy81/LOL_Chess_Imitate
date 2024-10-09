@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GiantBelt : BaseItem
 {
-    // Start is called before the first frame update
-    void Start()
+    // 조합 함수 호출
+    public override void CheckCombine()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    // 아이템 능력치 적용
+
+    public override void ApplyItemStats()
     {
-        
+        base.ApplyItemStats();
     }
 }

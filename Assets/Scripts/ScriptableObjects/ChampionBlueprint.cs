@@ -16,7 +16,7 @@ public class ChampionBlueprint : ScriptableObject
     [SerializeField] private ChampionCost championCost;
     [SerializeField] private Image championImage;
 
-    [Header("Enemy Stats")]
+    [Header("Champion Stats")]
     [SerializeField] private List<ChampionLevelData> championLevelData;
     [SerializeField] private float attack_Speed;
     [SerializeField] private int ad_Defense;
@@ -26,9 +26,6 @@ public class ChampionBlueprint : ScriptableObject
     [SerializeField] private float mana_Cur;
     [SerializeField] private int attack_Range;
     [SerializeField] private SkillBlueprint skillBlueprint;
-
-
-
 
 
     public string ChampionName => championName;
@@ -61,6 +58,5 @@ public class ChampionBlueprint : ScriptableObject
     public int Attack_Range => attack_Range;
 
     public SkillBlueprint SkillBlueprint => skillBlueprint;
-
 }
 

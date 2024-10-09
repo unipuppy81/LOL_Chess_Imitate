@@ -29,6 +29,7 @@ public class ItemDataContainerBlueprint : ScriptableObject
             if ((desk.FirstItem == item1 && desk.SecondItem == item2) ||
                 (desk.FirstItem == item2 && desk.SecondItem == item1))
             {
+                //Manager.Asset.GetBlueprint("BFSword") as ItemBlueprint;
                 return desk.CombineItem;
             }
         }
@@ -48,6 +49,7 @@ public class ItemBlueprint
     [SerializeField, TextArea] private string description;
     [SerializeField] private ItemType itemType;
     [SerializeField] private List<ItemAttribute> itemAttribute;
+    [SerializeField] private BaseItem baseItem;
 
     public Image Icon => icon;
     public string ItemId => itemId;
@@ -55,6 +57,7 @@ public class ItemBlueprint
     public string Description => description;
     public ItemType ItemType => itemType;
     public List<ItemAttribute> Attribute => itemAttribute;
+    public BaseItem BaseItem => baseItem;
 }
 
 

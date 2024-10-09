@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Globals : MonoBehaviour
 {
-    public Dictionary<ChampionCost, int> purchase_Cost;
-    public Dictionary<ChampionCost, int> sell_Cost;
+    public Dictionary<ChampionCost, int> Purchase_Cost;
+    public Dictionary<ChampionCost, int> Sell_Cost;
 }
