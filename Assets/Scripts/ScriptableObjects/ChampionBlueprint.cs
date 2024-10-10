@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "ChampionBlueprint", menuName = "Blueprints/ChampionBlueprint")]
 public class ChampionBlueprint : ScriptableObject
@@ -13,9 +14,9 @@ public class ChampionBlueprint : ScriptableObject
     [SerializeField] private ChampionJob championJob_First;
     [SerializeField] private ChampionJob championJob_Second;
     [SerializeField] private ChampionCost championCost;
+    [SerializeField] private Image championImage;
 
-
-    [Header("Enemy Stats")]
+    [Header("Champion Stats")]
     [SerializeField] private List<ChampionLevelData> championLevelData;
     [SerializeField] private float attack_Speed;
     [SerializeField] private int ad_Defense;
@@ -25,9 +26,6 @@ public class ChampionBlueprint : ScriptableObject
     [SerializeField] private float mana_Cur;
     [SerializeField] private int attack_Range;
     [SerializeField] private SkillBlueprint skillBlueprint;
-
-
-
 
 
     public string ChampionName => championName;
@@ -44,6 +42,8 @@ public class ChampionBlueprint : ScriptableObject
 
     public ChampionCost ChampionCost => championCost;
 
+    public Image ChampionImage => championImage;
+
     public List<ChampionLevelData> ChampionLevelData => championLevelData;
 
     public float AttackSpeed => attack_Speed;
@@ -58,6 +58,5 @@ public class ChampionBlueprint : ScriptableObject
     public int Attack_Range => attack_Range;
 
     public SkillBlueprint SkillBlueprint => skillBlueprint;
-
 }
 

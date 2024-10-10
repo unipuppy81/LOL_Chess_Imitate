@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UIEvent : MonoBehaviour
+public static class UIEvent
 {
-    // Start is called before the first frame update
-    void Start()
+    public static void SetEvent(this GameObject gameObject, UIEventType uiEventType, Action<PointerEventData> action)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UIEventHandler handler = Utilities.GetOrAddComponent<UIEventHandler>(gameObject);
+        handler.BindEvent(uiEventType, action);
     }
 }

@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class ChampionBase : MonoBehaviour
@@ -11,6 +14,9 @@ public class ChampionBase : MonoBehaviour
     private SkillBlueprint skillBlueprint;
     private GameObject skillObject;
     private BaseSkill baseSkill;
+    private Rigidbody rigid;
+    private ChampionView championView;
+    private List<ItemBlueprint> items = new List<ItemBlueprint>();
 
     private string championName;
     private ChampionLine line_first;
@@ -36,11 +42,16 @@ public class ChampionBase : MonoBehaviour
     private int sell_Cost;
 
 
-    private Rigidbody rigid;
-    private ChampionView championView;
-    
+    // 챔피언 로직 변수
+    private int maxItemSlot;
+    private bool isAttacking;
 
     #endregion
+
+
+    // 체크 전용
+    private ItemDataContainerBlueprint iDataBP;
+
 
     #region Init
 
@@ -80,6 +91,8 @@ public class ChampionBase : MonoBehaviour
 
         purchase_Cost = 1;
         sell_Cost = purchase_Cost * championLevel - 1;
+
+        SetChampionLogic();
     }
 
     public void SetHpBar()
@@ -90,6 +103,12 @@ public class ChampionBase : MonoBehaviour
     public void ResetHealth()
     {
         curHp = maxHp;
+    }
+
+    public void SetChampionLogic()
+    {
+        maxItemSlot = 3;
+        isAttacking = false;
     }
 
     #endregion
@@ -109,32 +128,81 @@ public class ChampionBase : MonoBehaviour
 
     private void Update()
     {
-        
+        if (!isAttacking)
+        {
+            StartCoroutine(AttackRoutine());
+        }
     }
 
     #endregion
 
     #region Attack Method
 
-    public void CreateNormalAttack()
+    public void CreateNormalAttack(GameObject target)
     {
-
+        ChampionBase targetHealth = target.GetComponent<ChampionBase>();
+        if (targetHealth != null)
+        {
+            Debug.Log("Damage");
+            targetHealth.TakeDamage(10);
+        }
     }
 
     private IEnumerator AttackRoutine()
     {
-        yield return null;
+        isAttacking = true;
+
+        GameObject target = FindTargetInRange();
+
+        if (target == null)
+        {
+            Debug.Log("사거리 내에 없습니다.");
+            yield break;
+        }
+
+        ChampionBase targetHealth = target.GetComponent<ChampionBase>();
+
+        while (targetHealth != null && targetHealth.curHp > 0)
+        {
+            if (curMana >= maxMana)
+            {
+                UseSkill(target);
+            }
+            else
+            {
+                CreateNormalAttack(target);
+            }
+
+            yield return new WaitForSeconds(attack_Speed);
+        }
+
+        isAttacking = false; 
     }
 
-    public void SkillAttack()
+    private GameObject FindTargetInRange()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attack_Range);
+
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider.CompareTag("Enemy")) 
+            {
+                return collider.gameObject; 
+            }
+        }
+
+        return null; 
+    }
+
+    public void UseSkill(GameObject target)
     {
         if (baseSkill == null)
             return;
 
-        baseSkill.Skill();
+        baseSkill.UseSkill();
     }
 
-    public void FloatingDamage(Vector3 position, int damage)
+    public void FloatingDamage(Vector3 position, float damage)
     {
 
     }
@@ -143,7 +211,7 @@ public class ChampionBase : MonoBehaviour
 
     #region Health Method
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
 
     }
@@ -153,5 +221,76 @@ public class ChampionBase : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Item
+
+    public void EquipItem(ItemBlueprint itemBlueprint)
+    {
+        itemBlueprint.BaseItem.ApplyItemStats();
+
+        // 조합된 아이템이 없을 경우
+        if (!HasCombinedItem())
+        {
+            // 칸이 비어있으면 추가
+            if (items.Count < maxItemSlot)
+            {
+                items.Add(itemBlueprint);
+            }
+            else
+            {
+                Debug.Log("Inventory is full!");
+            }
+        }
+        else
+        {
+            // 조합된 아이템이 있을 경우, 나머지 칸에만 조합 아이템 추가
+            if (itemBlueprint.ItemType == ItemType.Combine && items.Count < maxItemSlot)
+            {
+                items.Add(itemBlueprint);
+            }
+            else
+            {
+                Debug.Log("Cannot add CombinedItem or inventory is full!");
+            }
+        }
+
+        CombineItems();
+    }
+
+    // 아이템 조합
+    public void CombineItems()
+    {
+        if (items.Count >= 2)
+        {
+            ItemBlueprint combineItem1 = items[0];
+            ItemBlueprint combineItem2 = items[1]; 
+
+            if (combineItem1.ItemType == ItemType.Combine && combineItem2.ItemType == ItemType.Combine)
+            {
+                string newId = iDataBP.FindCombineItem(combineItem1.ItemId, combineItem2.ItemId);
+                ItemBlueprint combinedItem = Manager.Item.FindItemById(newId);
+
+                items.Add(combinedItem);
+
+                items.RemoveAt(0);
+                items.RemoveAt(0);
+            }
+            else
+            {
+                Debug.Log("Cannot combine items. Both must be CombineItems.");
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough items to combine!");
+        }
+    }
+
+    // 조합된 아이템이 있는지 확인
+    private bool HasCombinedItem()
+    {
+        return items.Exists(item => item.ItemType == ItemType.Combine);
+    }
     #endregion
 }

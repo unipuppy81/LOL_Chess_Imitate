@@ -21,7 +21,8 @@ public class ObjectPoolManager
 
     private ObjectInfo[] _poolList = new ObjectInfo[] {
         new ObjectInfo("ChampionFrame", 100),
-        new ObjectInfo("Canvas_FloatingDamage", 200)
+        new ObjectInfo("Canvas_FloatingDamage", 200),
+        new ObjectInfo("ProjectileFrame", 500)
     };
 
     private string objectName;

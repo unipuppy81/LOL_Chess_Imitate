@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: ChampionBlueprint_Ahri
   m_EditorClassIdentifier: 
   championName: "\uC544\uB9AC"
-  championObj: {fileID: 0}
+  championObj: {fileID: 5665606537432512241, guid: ff6452ea470d0e6469fcf6b88393a054, type: 3}
   championLine_First: 8
   championLine_Second: 0
   championJob_First: 13
   championJob_Second: 0
   championCost: 2
+  championImage: {fileID: 0}
   championLevelData:
   - Level: 1
     Hp: 550

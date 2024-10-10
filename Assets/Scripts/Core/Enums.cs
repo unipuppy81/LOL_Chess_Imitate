@@ -51,13 +51,12 @@ public enum ChampionCost
     FiveCost
 }
 
-
 // 아이템 타입
-
 public enum ItemType
 {
     None = 0,
     Normal,
+    Combine,
     Using, // 소모 아이템 (니코, 자제기, 재조합)
     Symbol, // 특성 아이템
     Relics, // 유물
@@ -68,14 +67,16 @@ public enum ItemType
 public enum ItemAttributeType
 {
     None = 0,
-    AD_Damage,
+    AD_Power,
     AD_Speed,
     AD_Defense,
-    AP_Damage,
+    AP_Power,
     AP_Defense,
     Mana,
     HP,
     CriticalPercent,
+    BloodSuck,
+    Total_Power,
     Special
 }
 
@@ -92,4 +93,10 @@ public enum DamageType
     Normal,
     Critical,
     Player
+}
+
+// UI Event 타입 열거형
+public enum UIEventType
+{
+    Click, PointerDown, PointerUp, Drag,
 }
