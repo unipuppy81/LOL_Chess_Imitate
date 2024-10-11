@@ -9,12 +9,12 @@ public class BaseSkill : MonoBehaviour
     /// <summary>
     /// 능력치 증가 등의 스킬
     /// </summary>
-    public virtual void UseSkill() { }
+    public virtual void UseSkill(GameObject thisGameObject) { }
 
 
     /// <summary>
     /// 발사체 발사 스킬
     /// </summary>
     /// <param name="target"></param>
-    public virtual void UseSkillTarget(GameObject target) { }
+    public virtual void UseSkillTarget(GameObject thisGameObject, GameObject target) { }
 }

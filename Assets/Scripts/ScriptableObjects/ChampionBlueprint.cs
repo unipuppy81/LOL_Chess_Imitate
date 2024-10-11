@@ -19,6 +19,8 @@ public class ChampionBlueprint : ScriptableObject
     [Header("Champion Stats")]
     [SerializeField] private List<ChampionLevelData> championLevelData;
     [SerializeField] private float attack_Speed;
+    [SerializeField] private float ad_Attack;
+    [SerializeField] private float ap_Attack;
     [SerializeField] private int ad_Defense;
     [SerializeField] private int ap_Defense;
     [SerializeField] private float speed;
@@ -48,6 +50,8 @@ public class ChampionBlueprint : ScriptableObject
 
     public float AttackSpeed => attack_Speed;
 
+    public float AD_Attack => ad_Attack;
+    public float AP_Attack => ap_Attack;
     public int AD_Defense => ad_Defense;
 
     public int AP_Defense => ap_Defense;
