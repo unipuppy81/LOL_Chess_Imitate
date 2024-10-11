@@ -31,6 +31,8 @@ public class ChampionBase : MonoBehaviour
     private int power;
 
     private float attack_Speed;
+    private float ad_Attack;
+    private float ap_Attack;
     private float ad_Defense;
     private float ap_Defense;
     private float speed;
@@ -45,9 +47,48 @@ public class ChampionBase : MonoBehaviour
     // 챔피언 로직 변수
     private int maxItemSlot;
     private bool isAttacking;
+    private bool isEnchanceAttack;
+
+    private int enchancedAttackCount;
+    private int remainingEnhancedAttacks; // 남은 강화 공격 횟수
+    private float enhancedDamage;
+
 
     #endregion
 
+
+
+    #region Property
+
+    public ChampionBlueprint ChampionBlueprint => championBlueprint;
+    public SkillBlueprint SkillBlueprint => skillBlueprint;
+
+    public int ChampionLevel => championLevel;
+
+    public bool IsEnchanceAttack
+    {
+        get { return isEnchanceAttack; }
+        set { isEnchanceAttack = value; }
+    }
+
+    public int EnchancedAttackCount
+    {
+        get { return enchancedAttackCount; }
+        set { enchancedAttackCount = value; }
+    }
+
+    public int RemainingEnhancedAttacks
+    {
+        get { return remainingEnhancedAttacks; }
+        set { remainingEnhancedAttacks = value; }
+    }
+    public float EnchancedDamage
+    {
+        get { return enhancedDamage; }
+        set { enhancedDamage = ad_Attack * value; }
+    }
+
+    #endregion
 
     // 체크 전용
     private ItemDataContainerBlueprint iDataBP;
@@ -63,7 +104,7 @@ public class ChampionBase : MonoBehaviour
     /// <param name="hpWeight"></param>
     /// <param name="atkWeight"></param>
     /// <param name="goldWeight"></param>
-    public void SetChampion(ChampionBlueprint blueprint, Vector3 position, long hpWeight, long atkWeight, long goldWeight)
+    public void SetChampion(ChampionBlueprint blueprint)
     {
         championBlueprint = blueprint;
         skillBlueprint = blueprint.SkillBlueprint;
@@ -82,6 +123,8 @@ public class ChampionBase : MonoBehaviour
         curHp = maxHp;
 
         attack_Speed = blueprint.AttackSpeed;
+        ad_Attack = blueprint.AD_Attack;
+        ap_Attack = blueprint.AP_Attack;
         ad_Defense = blueprint.AD_Defense;
         ap_Defense = blueprint.AP_Defense;
         speed = blueprint.Speed;
@@ -109,6 +152,7 @@ public class ChampionBase : MonoBehaviour
     {
         maxItemSlot = 3;
         isAttacking = false;
+        isEnchanceAttack = false;
     }
 
     #endregion
@@ -128,15 +172,36 @@ public class ChampionBase : MonoBehaviour
 
     private void Update()
     {
-        if (!isAttacking)
+        if (!isAttacking && !isEnchanceAttack)
         {
             StartCoroutine(AttackRoutine());
+        }
+        else if(!isAttacking && isEnchanceAttack)
+        {
+
         }
     }
 
     #endregion
 
     #region Attack Method
+
+    private void CreateEnchancedAttack(GameObject target)
+    {
+        ChampionBase targetHealth = target.GetComponent<ChampionBase>();
+        if (targetHealth != null)
+        {
+            float damage = (remainingEnhancedAttacks > 0) ? enhancedDamage : ad_Attack;
+            targetHealth.TakeDamage(damage);
+            Debug.Log("Attacked with " + damage + " damage.");
+
+            // 강화 공격을 수행했으면 횟수 감소
+            if (remainingEnhancedAttacks > 0)
+            {
+                remainingEnhancedAttacks--;
+            }
+        }
+    }
 
     public void CreateNormalAttack(GameObject target)
     {
@@ -157,6 +222,7 @@ public class ChampionBase : MonoBehaviour
         if (target == null)
         {
             Debug.Log("사거리 내에 없습니다.");
+            isAttacking = false;
             yield break;
         }
 
@@ -170,7 +236,14 @@ public class ChampionBase : MonoBehaviour
             }
             else
             {
-                CreateNormalAttack(target);
+                if (IsEnchanceAttack)
+                {
+                    CreateNormalAttack(target);
+                }
+                else if (!IsEnchanceAttack)
+                {
+                    CreateEnchancedAttack(target);
+                }
             }
 
             yield return new WaitForSeconds(attack_Speed);
@@ -199,7 +272,7 @@ public class ChampionBase : MonoBehaviour
         if (baseSkill == null)
             return;
 
-        baseSkill.UseSkill();
+        baseSkill.UseSkill(gameObject);
     }
 
     public void FloatingDamage(Vector3 position, float damage)
