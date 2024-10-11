@@ -50,15 +50,13 @@ public class ItemManager
 
     #region ItemDataMethod
 
-    private void ParseItemData()
+    public void ParseItemData()
     {
         itemDataBase = Manager.Asset.GetBlueprint("ItemDataContainer") as ItemDataContainerBlueprint;
-
         foreach (var itemData in itemDataBase.ItemDatas)
         {
             itemDataDictionary.Add(itemData.ItemName, itemData);
 
-            totalItems.Add(itemData);
             nomralItem = itemDataBase.FindItemType('A');
             combineItem = itemDataBase.FindItemType('B');
             symbolItem = itemDataBase.FindItemType('C');
