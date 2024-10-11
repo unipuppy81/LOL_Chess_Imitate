@@ -4,7 +4,25 @@ using UnityEngine;
 
 public class ChampionManager
 {
+    private Dictionary<string, ChampionBlueprint> championDataDictionary;
 
+    #region Init
+    public void Init()
+    {
+        championDataDictionary = new Dictionary<string, ChampionBlueprint>();
+        ParseItemData();
+    }
+
+    #endregion
+
+
+    #region ChampionDataMethod
+    private void ParseItemData()
+    {
+
+    }
+
+    #endregion
 }
 
 [System.Serializable]

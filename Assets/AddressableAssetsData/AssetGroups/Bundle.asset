@@ -1193,6 +1193,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Bundle
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76b5542a56468354e95f3706b0f8b07e
+    m_Address: Assets/@Resources/Prefab/Champion/2Cost/ChampionFrame_Akali.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bundle
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 007dbb8dc11547a489b17ea49f471f1a, type: 2}
   m_SchemaSet:

@@ -12,7 +12,7 @@ public class Skill_Ahri : BaseSkill
     /// 마나가 다 차면 이 함수 실행
     /// </summary>
     /// <param name="target"></param>
-    public override void UseSkillTarget(GameObject target)
+    public override void UseSkillTarget(GameObject thisGameObject, GameObject target)
     {
         StartCoroutine(SkillAttackRoutine(target));
         StartCoroutine(ReturnSkillRoutine(target));
