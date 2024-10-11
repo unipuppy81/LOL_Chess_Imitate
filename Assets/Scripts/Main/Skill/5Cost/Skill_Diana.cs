@@ -10,8 +10,8 @@ public class Skill_Diana : BaseSkill
     /// 스킬을 2회 사용할 때마다 폭설을 내려 모든 적이 동상에 걸리게 하고 3초에 걸쳐 모든 아군의 체력을 회복시킵니다.또한 초과 체력 회복량은 3초 동안 지속되는 보호막으로 전환됩니다.
     /// 동상: 공격 속도 20% 감소
     /// </summary>
-    public override void UseSkill(GameObject thisGameObject)
+    public override void UseSkill()
     {
-
+        base.UseSkill();
     }
 }

@@ -326,11 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b226675098d2d40ba6d028f9d45416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashRange: 30
-  dashSpeed: 10
-  enhancedAttackCount: 3
-  enhancedDamage: 20
-  normalDamage: 10
 --- !u!1 &7162528138292096961
 GameObject:
   m_ObjectHideFlags: 0
