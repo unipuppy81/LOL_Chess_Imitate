@@ -1194,16 +1194,4 @@ MonoBehaviour:
     - Bundle
     FlaggedDuringContentUpdateRestriction: 0
 <<<<<<< HEAD
-=======
-  - m_GUID: 18e50b25d6a875541b07ee4d7386a0f1
-    m_Address: Assets/@Resources/Blueprints/StageData/StageDataBluePrint.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
->>>>>>> Jimin
-  m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: 007dbb8dc11547a489b17ea49f471f1a, type: 2}
-  m_SchemaSet:
-    m_Schemas:
-    - {fileID: 11400000, guid: 2e0daa2e3a4398244a25e0e05b184d26, type: 2}
-    - {fileID: 11400000, guid: 511a50dda93bf7940aac51cb37c65eae, type: 2}
+
